@@ -4,7 +4,7 @@ PostPilot AI predicts whether a social-media post is likely to be in the top eng
 
 ## Current status
 
-This repository contains the reproducible Python pipeline. The source dataset is intentionally not included because the workspace only contained the project brief. Place it at `data/social_media_engagement.csv`.
+This repository contains the reproducible Python pipeline. The working dataset is downloaded locally from Kaggle and is intentionally not included in Git because it is raw data. See `data/README.md` for provenance.
 
 ## Expected input columns
 
@@ -20,6 +20,8 @@ python src/postpilot_pipeline.py --input data/social_media_engagement.csv --outp
 ```
 
 The command writes cleaned/predicted data, model metrics, feature importance, and a strategy summary to `output/`.
+
+The first leakage-safe baseline on the 12,000-row dataset produced ROC-AUC 0.498 and F1 0.093. This indicates weak signal in the available pre-publication metadata; it is not a reason to include post-publication outcomes as features.
 
 ## Outputs
 

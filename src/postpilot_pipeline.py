@@ -32,8 +32,20 @@ CATEGORICAL_FEATURES = [
     "Emotion Type",
     "Posting_Weekday",
     "Posting_Month",
+    "Brand Name",
+    "Product Name",
+    "Campaign Name",
+    "Language",
 ]
-NUMERICAL_FEATURES = ["Posting_Hour", "Sentiment Score"]
+NUMERICAL_FEATURES = [
+    "Posting_Hour",
+    "Sentiment Score",
+    "Toxicity Score",
+    "User Past Sentiment Avg",
+    "Text Length",
+    "Hashtag Count",
+    "Mention Count",
+]
 REQUIRED_COLUMNS = {
     "Timestamp",
     "Platform",
@@ -49,6 +61,19 @@ REQUIRED_COLUMNS = {
 
 def load_and_prepare(path: Path) -> pd.DataFrame:
     df = pd.read_csv(path).drop_duplicates().copy()
+    aliases = {
+        "post_id": "Post ID", "timestamp": "Timestamp", "platform": "Platform",
+        "topic_category": "Topic Category", "sentiment_score": "Sentiment Score",
+        "sentiment_label": "Sentiment Label", "emotion_type": "Emotion Type",
+        "toxicity_score": "Toxicity Score", "likes_count": "Likes Count",
+        "shares_count": "Shares Count", "comments_count": "Comments Count",
+        "impressions": "Impressions", "brand_name": "Brand Name",
+        "product_name": "Product Name", "campaign_name": "Campaign Name",
+        "campaign_phase": "Campaign Phase", "language": "Language",
+        "text_content": "Text Content", "hashtags": "Hashtags", "mentions": "Mentions",
+        "user_past_sentiment_avg": "User Past Sentiment Avg",
+    }
+    df = df.rename(columns={column: aliases[column] for column in df.columns if column in aliases})
     missing = sorted(REQUIRED_COLUMNS - set(df.columns))
     if missing:
         raise ValueError(f"Missing required columns: {', '.join(missing)}")
@@ -62,10 +87,15 @@ def load_and_prepare(path: Path) -> pd.DataFrame:
         df[column] = pd.to_numeric(df[column], errors="coerce").fillna(0).clip(lower=0)
     df["Sentiment Score"] = pd.to_numeric(df["Sentiment Score"], errors="coerce")
     df["Sentiment Score"] = df["Sentiment Score"].fillna(df["Sentiment Score"].median())
+    for column in ["Toxicity Score", "User Past Sentiment Avg"]:
+        df[column] = pd.to_numeric(df[column], errors="coerce")
 
     df["Posting_Hour"] = df["Timestamp"].dt.hour
     df["Posting_Weekday"] = df["Timestamp"].dt.day_name()
     df["Posting_Month"] = df["Timestamp"].dt.month_name()
+    df["Text Length"] = df["Text Content"].fillna("").astype(str).str.len()
+    df["Hashtag Count"] = df["Hashtags"].fillna("").astype(str).str.count("#")
+    df["Mention Count"] = df["Mentions"].fillna("").astype(str).str.count("@")
     df["Total_Engagement"] = df[ENGAGEMENT_COLUMNS].sum(axis=1)
     df["Engagement_Rate"] = df["Total_Engagement"] / df["Impressions"] * 100
     threshold = df["Engagement_Rate"].quantile(0.75)

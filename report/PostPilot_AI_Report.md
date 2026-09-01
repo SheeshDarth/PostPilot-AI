@@ -16,7 +16,7 @@ Rows at or above the 75th percentile of engagement rate receive the `High_Perfor
 
 ## Results
 
-Run the pipeline with the project dataset, then insert the generated values from `output/model_metrics.csv`, `output/feature_importance.csv`, and `output/strategy_summary.json` here. Do not manually estimate metrics.
+The first leakage-safe run used 12,000 rows and produced accuracy 0.724, precision 0.262, recall 0.057, F1 0.093, and ROC-AUC 0.498. The near-random ROC-AUC indicates that the allowed metadata has limited predictive signal for this synthetic dataset. These are baseline results, not evidence of production-level performance.
 
 ## Dashboard
 
