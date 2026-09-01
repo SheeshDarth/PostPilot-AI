@@ -7,5 +7,7 @@ venv/
 output/*.csv
 output/*.json
 data/*.csv
+data/**/*.csv
+data/**/*.zip
 data/*.xlsx
 *.pbix
