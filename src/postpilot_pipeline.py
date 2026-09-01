@@ -105,12 +105,20 @@ def load_and_prepare(path: Path) -> pd.DataFrame:
     return df
 
 
-def train(df: pd.DataFrame):
+def train(df: pd.DataFrame, split: str = "time"):
     features = CATEGORICAL_FEATURES + NUMERICAL_FEATURES
-    X, y = df[features], df["High_Performance"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.20, random_state=42, stratify=y
-    )
+    if split == "time":
+        ordered = df.sort_values("Timestamp")
+        cut = int(len(ordered) * 0.80)
+        X_train, X_test = ordered.iloc[:cut][features], ordered.iloc[cut:][features]
+        y_train, y_test = ordered.iloc[:cut]["High_Performance"], ordered.iloc[cut:]["High_Performance"]
+    elif split == "random":
+        X, y = df[features], df["High_Performance"]
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.20, random_state=42, stratify=y
+        )
+    else:
+        raise ValueError("split must be 'time' or 'random'")
     categorical = Pipeline(
         [("imputer", SimpleImputer(strategy="most_frequent")),
          ("encoder", OneHotEncoder(handle_unknown="ignore"))]
@@ -184,13 +192,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("output"))
+    parser.add_argument("--split", choices=["time", "random"], default="time")
     args = parser.parse_args()
     if not args.input.exists():
         raise FileNotFoundError(f"Input dataset not found: {args.input}")
     args.output.mkdir(parents=True, exist_ok=True)
 
     df = load_and_prepare(args.input)
-    model, metrics, importance = train(df)
+    model, metrics, importance = train(df, split=args.split)
     predictions = add_predictions(df, model)
     predictions.to_csv(args.output / "postpilot_predictions.csv", index=False)
     pd.DataFrame([metrics]).to_csv(args.output / "model_metrics.csv", index=False)

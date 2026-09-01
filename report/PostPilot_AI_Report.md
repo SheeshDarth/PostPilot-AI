@@ -16,7 +16,7 @@ Rows at or above the 75th percentile of engagement rate receive the `High_Perfor
 
 ## Results
 
-The first leakage-safe run used 12,000 rows and produced accuracy 0.724, precision 0.262, recall 0.057, F1 0.093, and ROC-AUC 0.498. The near-random ROC-AUC indicates that the allowed metadata has limited predictive signal for this synthetic dataset. These are baseline results, not evidence of production-level performance.
+The first chronological leakage-safe run used 12,000 rows and produced accuracy 0.725, precision 0.309, recall 0.084, F1 0.132, and ROC-AUC 0.489. The near-random ROC-AUC indicates that the allowed metadata has limited predictive signal for this synthetic dataset. These are baseline results, not evidence of production-level performance.
 
 ## Dashboard
 
