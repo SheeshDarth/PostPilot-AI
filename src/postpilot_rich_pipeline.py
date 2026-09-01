@@ -19,6 +19,8 @@ CATEGORICAL = ["user_gender", "topic", "is_verified", "has_media", "device", "la
 NUMERICAL = [
     "user_age", "followers_count", "following_count", "content_length",
     "Posting_Hour", "Hashtag_Count", "Account_Age_Days",
+    "Prior_User_Engagement_Rate", "Prior_User_Post_Count",
+    "Prior_User_Topic_Rate", "Prior_Device_Topic_Rate",
 ]
 TEXT = "post_content"
 OUTCOMES = ["likes", "comments", "shares", "engagement_rate"]
@@ -41,6 +43,21 @@ def prepare(path: Path) -> pd.DataFrame:
     df["Posting_Hour"] = df["post_date"].dt.hour
     df["Account_Age_Days"] = (df["post_date"] - df["account_creation_date"]).dt.days.clip(lower=0)
     df["Engagement_Rate"] = (df["likes"] + df["comments"] + df["shares"]) / df["followers_count"] * 100
+    ordered = df.sort_values("post_date").copy()
+    ordered["Prior_User_Engagement_Rate"] = ordered.groupby("user_id")["Engagement_Rate"].transform(
+        lambda values: values.shift().expanding().mean()
+    )
+    ordered["Prior_User_Post_Count"] = ordered.groupby("user_id").cumcount()
+    ordered["Prior_User_Topic_Rate"] = ordered.groupby(["user_id", "topic"])["Engagement_Rate"].transform(
+        lambda values: values.shift().expanding().mean()
+    )
+    ordered["Prior_Device_Topic_Rate"] = ordered.groupby(["device", "topic"])["Engagement_Rate"].transform(
+        lambda values: values.shift().expanding().mean()
+    )
+    df = ordered.sort_index()
+    df["Prior_User_Engagement_Rate"] = df["Prior_User_Engagement_Rate"].fillna(df["Engagement_Rate"].median())
+    for column in ["Prior_User_Topic_Rate", "Prior_Device_Topic_Rate"]:
+        df[column] = df[column].fillna(df["Engagement_Rate"].median())
     threshold = df["Engagement_Rate"].quantile(0.75)
     df["High_Performance"] = (df["Engagement_Rate"] >= threshold).astype(int)
     return df

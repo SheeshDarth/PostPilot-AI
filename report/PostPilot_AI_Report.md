@@ -24,7 +24,7 @@ Power BI should import `output/postpilot_predictions.csv` and `output/feature_im
 
 ## Rich-dataset experiment
 
-An alternative 20,000-row synthetic dataset was evaluated with follower count, account age, verification, media presence, demographics, device, hashtags, text, and timing. The chronological model achieved accuracy 0.663, precision 0.258, recall 0.187, F1 0.217, and ROC-AUC 0.516. It is a stronger feature set than the original dataset, but it still does not justify a 90% performance claim.
+An alternative 20,000-row synthetic dataset was evaluated with follower count, account age, verification, media presence, demographics, device, hashtags, text, and timing. The chronological model achieved accuracy 0.663, precision 0.258, recall 0.187, F1 0.217, and ROC-AUC 0.516. Adding creator-history, creator/topic-history, and device/topic-history features computed only from earlier posts improved ROC-AUC to 0.532 and F1 to 0.244. It is a stronger feature set, but it still does not justify an 85% performance claim.
 
 ## Limitations and future work
 

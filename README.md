@@ -40,4 +40,4 @@ The richer 20,000-row experiment is available through `src/postpilot_rich_pipeli
 python src/postpilot_rich_pipeline.py --input data/dataset_2025/synthetic_social_media_engagement.csv
 ```
 
-Its chronological baseline produced ROC-AUC 0.516 and F1 0.217. The improvement is measurable but not sufficient for a 90% claim; the dataset is synthetic and its pre-publication fields contain limited signal.
+Its chronological baseline produced ROC-AUC 0.516 and F1 0.217. Adding creator-history, creator/topic-history, and device/topic-history features computed only from earlier posts improved ROC-AUC to 0.532 and F1 to 0.244. The improvement is measurable but not sufficient for an 85% claim; the dataset is synthetic and its pre-publication fields contain limited signal.
