@@ -21,6 +21,7 @@ from sklearn.metrics import (
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 ENGAGEMENT_COLUMNS = ["Likes Count", "Comments Count", "Shares Count"]
@@ -46,6 +47,7 @@ NUMERICAL_FEATURES = [
     "Hashtag Count",
     "Mention Count",
 ]
+TEXT_FEATURE = "Text Content"
 REQUIRED_COLUMNS = {
     "Timestamp",
     "Platform",
@@ -93,7 +95,10 @@ def load_and_prepare(path: Path) -> pd.DataFrame:
     df["Posting_Hour"] = df["Timestamp"].dt.hour
     df["Posting_Weekday"] = df["Timestamp"].dt.day_name()
     df["Posting_Month"] = df["Timestamp"].dt.month_name()
-    df["Text Length"] = df["Text Content"].fillna("").astype(str).str.len()
+    df["Text Content"] = df["Text Content"].fillna("").astype(str)
+    df["Hashtags"] = df["Hashtags"].fillna("").astype(str)
+    df["Mentions"] = df["Mentions"].fillna("").astype(str)
+    df["Text Length"] = df["Text Content"].str.len()
     df["Hashtag Count"] = df["Hashtags"].fillna("").astype(str).str.count("#")
     df["Mention Count"] = df["Mentions"].fillna("").astype(str).str.count("@")
     df["Total_Engagement"] = df[ENGAGEMENT_COLUMNS].sum(axis=1)
@@ -106,7 +111,7 @@ def load_and_prepare(path: Path) -> pd.DataFrame:
 
 
 def train(df: pd.DataFrame, split: str = "time"):
-    features = CATEGORICAL_FEATURES + NUMERICAL_FEATURES
+    features = CATEGORICAL_FEATURES + NUMERICAL_FEATURES + [TEXT_FEATURE]
     if split == "time":
         ordered = df.sort_values("Timestamp")
         cut = int(len(ordered) * 0.80)
@@ -126,7 +131,11 @@ def train(df: pd.DataFrame, split: str = "time"):
     numerical = Pipeline([("imputer", SimpleImputer(strategy="median"))])
     preprocessor = ColumnTransformer(
         [("categorical", categorical, CATEGORICAL_FEATURES),
-         ("numerical", numerical, NUMERICAL_FEATURES)]
+         ("numerical", numerical, NUMERICAL_FEATURES),
+         ("text", TfidfVectorizer(
+             lowercase=True, strip_accents="unicode", ngram_range=(1, 2),
+             min_df=2, max_features=5000, sublinear_tf=True
+         ), TEXT_FEATURE)]
     )
     model = Pipeline(
         [("preprocessor", preprocessor),
@@ -153,7 +162,7 @@ def train(df: pd.DataFrame, split: str = "time"):
 
 
 def add_predictions(df: pd.DataFrame, model) -> pd.DataFrame:
-    features = CATEGORICAL_FEATURES + NUMERICAL_FEATURES
+    features = CATEGORICAL_FEATURES + NUMERICAL_FEATURES + [TEXT_FEATURE]
     result = df.copy()
     result["Predicted_High_Performance"] = model.predict(result[features])
     result["High_Performance_Probability"] = model.predict_proba(result[features])[:, 1]

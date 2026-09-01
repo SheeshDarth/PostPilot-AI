@@ -16,7 +16,7 @@ Rows at or above the 75th percentile of engagement rate receive the `High_Perfor
 
 ## Results
 
-The first chronological leakage-safe run used 12,000 rows and produced accuracy 0.725, precision 0.309, recall 0.084, F1 0.132, and ROC-AUC 0.489. The near-random ROC-AUC indicates that the allowed metadata has limited predictive signal for this synthetic dataset. These are baseline results, not evidence of production-level performance.
+The first chronological leakage-safe metadata-only run used 12,000 rows and produced accuracy 0.725, precision 0.309, recall 0.084, F1 0.132, and ROC-AUC 0.489. Adding TF-IDF word/bigram features from pre-publication text produced accuracy 0.667, precision 0.249, recall 0.169, F1 0.202, and ROC-AUC 0.489. Text improved recall and F1 at the default threshold, but the near-random ROC-AUC indicates that the synthetic dataset still has limited ranking signal. These are baseline/demo results, not evidence of production-level performance.
 
 ## Dashboard
 

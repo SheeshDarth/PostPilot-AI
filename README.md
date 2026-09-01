@@ -21,7 +21,7 @@ python src/postpilot_pipeline.py --input data/social_media_engagement.csv --outp
 
 The command writes cleaned/predicted data, model metrics, feature importance, and a strategy summary to `output/`.
 
-The first chronological leakage-safe baseline on the 12,000-row dataset produced ROC-AUC 0.489 and F1 0.132. This indicates weak signal in the available pre-publication metadata; it is not a reason to include post-publication outcomes as features. Use `--split random` only for comparison; the default is the more realistic time split.
+The chronological leakage-safe metadata baseline produced ROC-AUC 0.489 and F1 0.132. The current version adds TF-IDF word/bigram features from pre-publication text and produces F1 0.202 with recall 0.169; ROC-AUC remains 0.489, confirming that the synthetic dataset has weak ranking signal. Use `--split random` only for comparison; the default is the more realistic time split.
 
 ## Outputs
 
