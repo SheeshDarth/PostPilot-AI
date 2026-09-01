@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+output/*.csv
+output/*.json
+data/*.csv
+data/*.xlsx
+*.pbix
