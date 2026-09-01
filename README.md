@@ -31,3 +31,13 @@ The chronological leakage-safe metadata baseline produced ROC-AUC 0.489 and F1 0
 - `strategy_summary.json` — best historical platform, topic, weekday, hour, sentiment, and emotion.
 
 Power BI can load `postpilot_predictions.csv` and `feature_importance.csv` after the pipeline completes.
+
+## Rich dataset experiment
+
+The richer 20,000-row experiment is available through `src/postpilot_rich_pipeline.py` and uses followers, account age, media presence, demographics, device, hashtags, content, and timing. Run it with:
+
+```powershell
+python src/postpilot_rich_pipeline.py --input data/dataset_2025/synthetic_social_media_engagement.csv
+```
+
+Its chronological baseline produced ROC-AUC 0.516 and F1 0.217. The improvement is measurable but not sufficient for a 90% claim; the dataset is synthetic and its pre-publication fields contain limited signal.

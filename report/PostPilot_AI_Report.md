@@ -22,6 +22,10 @@ The first chronological leakage-safe metadata-only run used 12,000 rows and prod
 
 Power BI should import `output/postpilot_predictions.csv` and `output/feature_importance.csv`. Use one descriptive page for platform/topic/timing engagement and one predictive page for probabilities, performance segments, and feature importance.
 
+## Rich-dataset experiment
+
+An alternative 20,000-row synthetic dataset was evaluated with follower count, account age, verification, media presence, demographics, device, hashtags, text, and timing. The chronological model achieved accuracy 0.663, precision 0.258, recall 0.187, F1 0.217, and ROC-AUC 0.516. It is a stronger feature set than the original dataset, but it still does not justify a 90% performance claim.
+
 ## Limitations and future work
 
 The model does not guarantee virality and currently omits media quality, follower count, hashtags, creator history, platform algorithm changes, and external events. Caption NLP, image/video analysis, platform APIs, A/B testing, and a Streamlit interface are deferred until after the September 4 demo.
