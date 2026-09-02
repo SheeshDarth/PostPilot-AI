@@ -2,6 +2,8 @@
 
 PostPilot AI predicts whether a social-media post is likely to be in the top engagement quartile using only attributes available before publication.
 
+For a non-technical teammate, start with [TEAMMATE_GUIDE.md](TEAMMATE_GUIDE.md) or run `RUN_PROJECT.ps1` from PowerShell.
+
 ## Current status
 
 This repository contains the reproducible Python pipeline. The working dataset is downloaded locally from Kaggle and is intentionally not included in Git because it is raw data. See `data/README.md` for provenance.
