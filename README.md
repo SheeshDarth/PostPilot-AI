@@ -54,6 +54,10 @@ python src/instagram_postpilot.py --input data/instagram_analytics/Instagram_Ana
 
 This path exports `instagram_predictions.csv`, analysis tables, metrics, and feature importance for the dashboard. The chronological run currently achieves accuracy 0.762 and ROC-AUC 0.759.
 
+## Final project domain: YouTube
+
+The project name remains **PostPilot AI**, but the final domain can be YouTube video analytics. Run `src/youtube_postpilot.py` with `data/youtube_analytics/YouTube_Video.csv`. It exports `output/youtube_predictions.csv`, `output/youtube_model_metrics.csv`, and `output/youtube_feature_importance.csv`. See `report/YouTube_PostPilot_Report.md` for the YouTube report.
+
 ## Unified dataset experiment
 
 Create the harmonized 61,999-row table with `src/unify_datasets.py`, then benchmark it with `src/unified_postpilot.py`. The source-aware chronological benchmark achieved 52.7% overall accuracy and macro-F1 0.489. Per-source accuracy was 74.3% for the original dataset, 54.7% for Instagram, and 36.8% for Social 2025. Use this as a comparison study; keep the Instagram-only model as the primary demo because its metrics are more interpretable.
