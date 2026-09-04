@@ -4,9 +4,9 @@ This guide is designed for someone who does not want to write code. Follow the s
 
 ## What this project does
 
-PostPilot AI analyzes Instagram posts and predicts whether a future post is likely to be high-performing. It also exports tables for Power BI or Tableau.
+PostPilot AI analyzes YouTube videos and predicts whether a future video is likely to be high-performing. It also exports tables for Power BI or Tableau.
 
-Use the **Instagram pipeline** for the final demo. Do not start with the unified experiment.
+Use the **YouTube pipeline** for the final demo. Do not start with the older Instagram or unified experiments.
 
 ## Step 1 — Install Python
 
@@ -26,12 +26,12 @@ Copy and run:
 python -m pip install -r requirements.txt
 ```
 
-## Step 4 — Run the final Instagram analysis
+## Step 4 — Run the final YouTube analysis
 
 Copy and run:
 
 ```powershell
-python src/instagram_postpilot.py --input data/instagram_analytics/Instagram_Analytics.csv --output output
+python src/youtube_postpilot.py --input data/youtube_analytics/YouTube_Video.csv --output output
 ```
 
 You should see metrics printed in the terminal. The run creates the dashboard files in `output/`.
@@ -40,15 +40,15 @@ You should see metrics printed in the terminal. The run creates the dashboard fi
 
 Open these files:
 
-- `output/instagram_model_metrics.csv` — model metrics
-- `output/instagram_predictions.csv` — main dashboard table
-- `output/instagram_feature_importance.csv` — model feature importance
+- `output/youtube_model_metrics.csv` — model metrics
+- `output/youtube_predictions.csv` — main dashboard table
+- `output/youtube_feature_importance.csv` — model feature importance
 - `output/instagram_analysis_media_type.csv`
 - `output/instagram_analysis_content_category.csv`
 - `output/instagram_analysis_post_hour.csv`
 - `output/instagram_analysis_traffic_source.csv`
 
-The current chronological benchmark is approximately 76% accuracy and 0.76 ROC-AUC. Do not change the result to 85% by adding likes, comments, shares, reach, impressions, or engagement rate as model inputs; those are post-publication outcomes.
+The current YouTube chronological benchmark is approximately 68% accuracy and 0.75 ROC-AUC. Do not change the result to 85% by adding final likes, comments, shares, impressions, watch time, or subscriber gains as model inputs; those are post-publication outcomes.
 
 ## Step 6 — Create the Power BI dashboard
 

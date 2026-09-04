@@ -2,6 +2,14 @@
 
 Use `output/instagram_predictions.csv` as the primary data source and `output/instagram_feature_importance.csv` for the model chart.
 
+For the final YouTube project, use `output/youtube_predictions.csv` and `output/youtube_feature_importance.csv` instead. Rename the imported table to `YouTube`.
+
+## YouTube Dashboard
+
+Page 1 should contain cards for total videos, average watch time, average CTR, total impressions, and subscribers gained. Add charts for watch time by content category, CTR by traffic source, average view percentage by video duration, and upload volume by hour.
+
+Page 2 should contain predicted high-performance videos, average prediction probability, F1, ROC-AUC, prediction probability by category/source, performance segments, feature importance, and a detail table with video ID, category, traffic source, duration, probability, and predicted class.
+
 ## Page 1 — Instagram Performance
 
 KPI cards: total posts, average calculated engagement rate, total reach, average follower count, and high-performance posts.
