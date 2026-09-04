@@ -32,6 +32,7 @@ Copy and run:
 
 ```powershell
 python src/youtube_postpilot.py --input data/youtube_analytics/YouTube_Video.csv --output output
+python src/hashtag_generator.py --input data/youtube_analytics/YouTube_Video.csv --output output/youtube_hashtags.csv
 ```
 
 You should see metrics printed in the terminal. The run creates the dashboard files in `output/`.
@@ -72,6 +73,10 @@ The current leakage-safe YouTube chronological benchmark is 73.25% accuracy, 0.7
 ## Step 7 — Create the report
 
 Use `report/YouTube_PostPilot_Report.md` as the report content. Add screenshots of both Power BI pages and export the final report to PDF.
+
+## Step 6A — Hashtag recommendations
+
+The hashtag file is `output/youtube_hashtags.csv`. Import it into Power BI as `YouTubeHashtags` and connect it to `YouTube` using `post_id`. The current dataset has no title or transcript, so the first run uses category and traffic-source fallback labels. For video-specific hashtags, add `title`, `description`, `transcript`, or `keywords` columns to the input CSV and rerun the generator.
 
 ## Step 8 — Demo script
 
