@@ -48,7 +48,7 @@ Open these files:
 - `output/instagram_analysis_post_hour.csv`
 - `output/instagram_analysis_traffic_source.csv`
 
-The current YouTube chronological benchmark is approximately 68% accuracy and 0.75 ROC-AUC. Do not change the result to 85% by adding final likes, comments, shares, impressions, watch time, or subscriber gains as model inputs; those are post-publication outcomes.
+The current leakage-safe YouTube chronological benchmark is 73.25% accuracy, 0.772 ROC-AUC, and 0.422 F1. The majority-class accuracy baseline is 74.9%, so report all metrics together. Do not change the result to 85% by adding final likes, comments, shares, impressions, watch time, or subscriber gains as model inputs; those are post-publication outcomes.
 
 ## Step 6 — Create the Power BI dashboard
 
@@ -71,7 +71,7 @@ The current YouTube chronological benchmark is approximately 68% accuracy and 0.
 
 ## Step 7 — Create the report
 
-Use `report/Instagram_PostPilot_Report.md` as the report content. Add screenshots of both Power BI pages and export the final report to PDF.
+Use `report/YouTube_PostPilot_Report.md` as the report content. Add screenshots of both Power BI pages and export the final report to PDF.
 
 ## Step 8 — Demo script
 

@@ -1,8 +1,6 @@
-# Power BI / Tableau Dashboard Specification
+# PostPilot AI Power BI / Tableau Dashboard Specification
 
-Use `output/instagram_predictions.csv` as the primary data source and `output/instagram_feature_importance.csv` for the model chart.
-
-For the final YouTube project, use `output/youtube_predictions.csv` and `output/youtube_feature_importance.csv` instead. Rename the imported table to `YouTube`.
+The final project domain is YouTube video analytics. Use `output/youtube_predictions.csv` as the primary data source and `output/youtube_feature_importance.csv` for the model chart. Rename the imported table to `YouTube`. A click-by-click Power BI guide is available in `dashboard/PowerBI_Setup.md`.
 
 ## YouTube Dashboard
 
