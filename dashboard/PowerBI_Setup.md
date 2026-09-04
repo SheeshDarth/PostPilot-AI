@@ -23,11 +23,15 @@ Add these cards:
 
 Add a clustered column chart of average watch time by `content_category`, a bar chart of average CTR by `traffic_source`, a line/column chart of average view percentage by duration band, and a column chart of video count by `upload_hour`.
 
+Suggested arrangement: place the five KPI cards across the top, the category and traffic-source charts in the middle, and the upload-hour chart across the bottom. Use `dashboard/PostPilot_AI_Measures.dax` as the copy source for all measures.
+
 ## Page 2 — Prediction strategy
 
 Add cards for predicted high-performance videos, average prediction probability, F1, ROC-AUC, and the decision threshold. Add a bar chart of average probability by `content_category`, a stacked column chart of `Performance_Segment`, a feature-importance bar chart using `output/youtube_feature_importance.csv`, and a table containing `post_id`, `content_category`, `traffic_source`, `video_duration_min`, `High_Performance_Probability`, and `Predicted_High_Performance`.
 
 Add a hashtag table using `YouTubeHashtags[post_id]`, `recommended_hashtags`, `hashtag_relevance_score`, and `hashtag_generation_source`. Relate `YouTubeHashtags[post_id]` to `YouTube[post_id]` with a one-to-one relationship if Power BI does not detect it automatically.
+
+Suggested arrangement: place prediction KPI cards across the top, slicers down the left, the hashtag table on the right, and probability/category charts along the bottom.
 
 ## Measures
 

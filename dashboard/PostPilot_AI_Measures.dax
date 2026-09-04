@@ -1,0 +1,43 @@
+-- PostPilot AI — Power BI measures
+-- Create each item with Modeling > New measure.
+
+Total Videos = COUNTROWS(Youtube)
+
+Predicted High Videos =
+CALCULATE(
+    COUNTROWS(Youtube),
+    Youtube[Predicted_High_Performance] = 1
+)
+
+Predicted High Rate =
+DIVIDE([Predicted High Videos], [Total Videos])
+
+Average Prediction Probability =
+AVERAGE(Youtube[High_Performance_Probability])
+
+Average Hashtag Relevance =
+AVERAGE(YoutubeHashtags[hashtag_relevance_score])
+
+Average Hashtags per Video =
+AVERAGE(YoutubeHashtags[hashtag_count])
+
+Average Watch Time (Hours) =
+AVERAGE(Youtube[total_watch_time_hours])
+
+Average CTR =
+AVERAGE(Youtube[ctr_percentage])
+
+Total Impressions =
+SUM(Youtube[impressions])
+
+Subscribers Gained =
+SUM(Youtube[subscribers_gained])
+
+-- Fixed model benchmark cards from the leakage-safe chronological test set.
+Test Accuracy = 0.7325
+
+Test F1 = 0.4216
+
+Test ROC AUC = 0.7716
+
+Decision Threshold = 0.42
