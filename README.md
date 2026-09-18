@@ -62,6 +62,10 @@ The project name remains **PostPilot AI**, but the final domain can be YouTube v
 
 Run `RUN_DASHBOARD.ps1` to regenerate predictions and hashtags and start the local dashboard at `http://127.0.0.1:8501`. The dashboard includes overview charts, prediction metrics, filters, high-probability videos, and hashtag recommendations.
 
+## Power BI Modeling MCP
+
+The repository includes `.vscode/mcp.json` and `dashboard/POWERBI_MCP_WORKFLOW.md` for Microsoft's official Power BI Modeling MCP server. It can automate semantic-model work such as DAX measures and relationships, but Power BI report-page visuals still need to be created in Power BI Desktop.
+
 ## Unified dataset experiment
 
 Create the harmonized 61,999-row table with `src/unify_datasets.py`, then benchmark it with `src/unified_postpilot.py`. The source-aware chronological benchmark achieved 52.7% overall accuracy and macro-F1 0.489. Per-source accuracy was 74.3% for the original dataset, 54.7% for Instagram, and 36.8% for Social 2025. Use this as a comparison study; keep the Instagram-only model as the primary demo because its metrics are more interpretable.
