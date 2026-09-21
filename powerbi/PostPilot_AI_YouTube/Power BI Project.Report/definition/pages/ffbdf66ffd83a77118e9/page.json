@@ -9,50 +9,12 @@
     "background": [
       {
         "properties": {
-          "show": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
-              }
-            }
-          },
           "color": {
             "solid": {
               "color": {
                 "expr": {
                   "Literal": {
                     "Value": "'#0B1220'"
-                  }
-                }
-              }
-            }
-          },
-          "transparency": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "wallpaper": [
-      {
-        "properties": {
-          "show": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
-              }
-            }
-          },
-          "color": {
-            "solid": {
-              "color": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'#070C16'"
                   }
                 }
               }
