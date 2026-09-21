@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "3fb54095a0c4a8ae298e",
   "position": {
     "x": 15,
@@ -21,20 +21,18 @@
                   {
                     "value": "POSTPILOT AI  |  CHANNEL OVERVIEW",
                     "textStyle": {
-                      "color": "#F4F7FB",
                       "fontWeight": "bold",
-                      "fontSize": "20pt"
+                      "fontSize": "20pt",
+                      "color": "#f4f7fb"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               }
             ]
           }
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -56,6 +54,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

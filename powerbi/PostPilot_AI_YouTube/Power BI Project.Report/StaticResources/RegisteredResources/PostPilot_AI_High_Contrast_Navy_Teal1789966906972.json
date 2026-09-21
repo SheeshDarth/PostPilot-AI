@@ -1,0 +1,19 @@
+{
+  "name": "PostPilot AI High Contrast Navy Teal",
+  "dataColors": [
+    "#20D4D9",
+    "#5B9CFF",
+    "#FFC857",
+    "#FF7A9E",
+    "#A48BFF",
+    "#47E39A",
+    "#FF9D45",
+    "#C7D4E5"
+  ],
+  "background": "#0B1220",
+  "foreground": "#F4F7FB",
+  "foregroundNeutralSecondary": "#B8C8DA",
+  "backgroundLight": "#152A45",
+  "backgroundNeutral": "#203653",
+  "tableAccent": "#20D4D9"
+}
