@@ -8,6 +8,16 @@
         "@microsoft/powerbi-modeling-mcp@latest",
         "--start"
       ]
+    },
+    "powerbi-report-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\Siddharth\\Desktop\\PE3 project\\tools\\powerbi-report-mcp\\dist\\index.js"
+      ],
+      "env": {
+        "PBIR_REPORT_PATH": "C:\\Users\\Siddharth\\Desktop\\PE3 project\\powerbi\\PostPilot_AI_YouTube\\Power BI Project.Report"
+      }
     }
   }
 }

@@ -1,0 +1,309 @@
+table YouTube
+	lineageTag: 4391894c-89af-4ad0-a195-63328e0fe1d6
+
+	measure Total_videos = COUNTROWS(YouTube)
+		formatString: 0
+		lineageTag: a0ce1d17-4200-4c76-9fd3-0ceb2b0ec4f0
+
+	measure predicted_high_videos = CALCULATE(countrows(YouTube),YouTube[Predicted_High_Performance]=1)
+		formatString: 0
+		lineageTag: db3ac913-5516-441a-9d23-081e01e8636d
+
+	measure Predicted_high_rate = DIVIDE([predicted_high_videos],[Total_videos])
+		lineageTag: 6e425fb0-965f-4e19-b272-eb60337175cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Average_Prediction_Probability = AVERAGE(YouTube[High_Performance_Probability])
+		lineageTag: 712797c6-772c-4369-b19c-2c79d0a47720
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_hashtags_per_video = AVERAGE(YouTubeHastags[hashtag_relevance_score])
+		lineageTag: 7b27f737-afe2-4701-8757-085b115dc15a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_watch_time = AVERAGE(YouTube[total_watch_time_hours])
+		lineageTag: 42d442f2-bf26-48a1-93c8-9ec58dc38962
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_CTR = AVERAGE(YouTube[ctr_percentage])
+		lineageTag: af580201-e815-4681-9abb-e57978c5fbff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure total_impressions = SUM(YouTube[impressions])
+		formatString: 0
+		lineageTag: 12b18e88-65ab-4ff3-950c-ab87984ce4fc
+
+	measure subscriber_gained = SUM(YouTube[subscribers_gained])
+		formatString: 0
+		lineageTag: b8ba01b6-3a44-4288-8400-a44d8a5b3c35
+
+	measure 'Total Videos' = COUNTROWS(YouTube)
+		lineageTag: 78ef1947-ba3a-47ea-9541-4e79a4d280c1
+
+	measure 'Predicted High Videos' = CALCULATE( COUNTROWS(YouTube), YouTube[Predicted_High_Performance] = 1 )
+		lineageTag: e664fb46-3d2f-4c3c-9f2d-c72de312961d
+
+	measure 'Predicted High Rate' = DIVIDE([Predicted High Videos], [Total Videos])
+		lineageTag: 9e00b639-bf5d-4cd3-9ce5-c387182be7cc
+
+	measure 'Average Prediction Probability' = AVERAGE(YouTube[High_Performance_Probability])
+		lineageTag: 2752533e-e12c-416b-aafc-11fc56bd59ff
+
+	measure 'Average Watch Time (Hours)' = AVERAGE(YouTube[total_watch_time_hours])
+		lineageTag: d462222d-ac96-488e-a489-93b9676a81b0
+
+	measure 'Average CTR' = AVERAGE(YouTube[ctr_percentage])
+		lineageTag: 593394b9-6891-4ca7-9129-ba63ef8a78de
+
+	measure 'Total Impressions' = SUM(YouTube[impressions])
+		lineageTag: 876d1dfc-e627-401c-859e-9328c096966d
+
+	measure 'Subscribers Gained' = SUM(YouTube[subscribers_gained])
+		lineageTag: 5884a017-81fb-47c3-bafc-b2028119009c
+
+	measure 'Test Accuracy' = 0.7325
+		lineageTag: 02172103-abc1-45c7-ace6-e7eeb86d2e3f
+
+	measure 'Test F1' = 0.4216
+		lineageTag: c953e489-c39f-4ece-9e39-9107eb6304ff
+
+	measure 'Test ROC AUC' = 0.7716
+		lineageTag: 85e64c7f-eff4-45a5-85e8-263dee5fdbda
+
+	measure 'Decision Threshold' = 0.42
+		lineageTag: ef20ac84-eeeb-41d4-865a-3c00372f4866
+
+	column post_id
+		dataType: string
+		isHidden
+		lineageTag: 264f58ca-9b7f-4abf-bd6e-be961c0f7572
+		summarizeBy: none
+		sourceColumn: post_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fd59becc-7778-4a79-be0f-c1416a1c109e
+		summarizeBy: none
+		sourceColumn: upload_date
+
+		variation Variation
+			isDefault
+			relationship: 8f770e8f-3c32-455c-907e-3ca5cc61b1d6
+			defaultHierarchy: LocalDateTable_c83a8cc3-e543-4e19-ba16-e114cc67354f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column video_duration_min
+		dataType: double
+		lineageTag: ba128b08-0fed-485c-b195-d6698b038548
+		summarizeBy: sum
+		sourceColumn: video_duration_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_view_duration_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b20d71b-35be-4255-ad8e-65528dd6f45a
+		summarizeBy: sum
+		sourceColumn: avg_view_duration_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_view_percentage
+		dataType: double
+		lineageTag: 32e66c8c-a0c5-46aa-945b-ab19ab2cfff1
+		summarizeBy: sum
+		sourceColumn: avg_view_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column subscribers_gained
+		dataType: int64
+		formatString: 0
+		lineageTag: f766dae9-812e-4522-85a9-ec77c6d984f3
+		summarizeBy: sum
+		sourceColumn: subscribers_gained
+
+		annotation SummarizationSetBy = Automatic
+
+	column traffic_source
+		dataType: string
+		lineageTag: 59010add-d5e1-4929-990f-201b36741f33
+		summarizeBy: none
+		sourceColumn: traffic_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column ctr_percentage
+		dataType: double
+		lineageTag: 142d3e79-9eb0-4d1e-bdfc-01fc8641b862
+		summarizeBy: sum
+		sourceColumn: ctr_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ab1abd8-e724-43ce-94da-f0dca9f1f893
+		summarizeBy: sum
+		sourceColumn: impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column likes
+		dataType: int64
+		formatString: 0
+		lineageTag: 59e0644d-0063-475e-8a81-634d0df7e104
+		summarizeBy: sum
+		sourceColumn: likes
+
+		annotation SummarizationSetBy = Automatic
+
+	column comments
+		dataType: int64
+		formatString: 0
+		lineageTag: 0da1fb8e-7941-4f50-be49-263d7507aea3
+		summarizeBy: sum
+		sourceColumn: comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column shares
+		dataType: int64
+		formatString: 0
+		lineageTag: 239efd37-3c71-4088-b154-9c26c14960f4
+		summarizeBy: sum
+		sourceColumn: shares
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_watch_time_hours
+		dataType: double
+		lineageTag: c374e770-af60-4f6c-92cd-367fddb46feb
+		summarizeBy: sum
+		sourceColumn: total_watch_time_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column content_category
+		dataType: string
+		lineageTag: 3059ca25-8d1f-44a4-a5d8-16844df7d62b
+		summarizeBy: none
+		sourceColumn: content_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: a1fadb82-d56f-4b73-b464-45f2c4b303cb
+		summarizeBy: sum
+		sourceColumn: upload_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 217c0331-084a-4d10-9b6c-9e1bbeadb161
+		summarizeBy: sum
+		sourceColumn: upload_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_dayofmonth
+		dataType: int64
+		formatString: 0
+		lineageTag: f464e728-5cde-45e5-b4b7-012857aec17c
+		summarizeBy: sum
+		sourceColumn: upload_dayofmonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_weekofyear
+		dataType: int64
+		formatString: 0
+		lineageTag: d041a6dd-18e1-42c4-a110-488d8fd99a98
+		summarizeBy: sum
+		sourceColumn: upload_weekofyear
+
+		annotation SummarizationSetBy = Automatic
+
+	column upload_weekday
+		dataType: string
+		lineageTag: 2cc6769f-fdd6-4e74-95c0-b949ddad45d1
+		summarizeBy: none
+		sourceColumn: upload_weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column High_Performance
+		dataType: int64
+		formatString: 0
+		lineageTag: b69f443e-2662-45d8-a04a-53c1a4fb2275
+		summarizeBy: sum
+		sourceColumn: High_Performance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Predicted_High_Performance
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e0889e-83dd-4d6d-b201-2e9d7d2ad762
+		summarizeBy: sum
+		sourceColumn: Predicted_High_Performance
+
+		annotation SummarizationSetBy = Automatic
+
+	column High_Performance_Probability
+		dataType: double
+		lineageTag: a9fefb1a-5468-499c-9cae-d97904a9a088
+		summarizeBy: sum
+		sourceColumn: High_Performance_Probability
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Performance_Segment
+		dataType: string
+		lineageTag: 3a6baac9-bd49-4d1f-8516-88b1cb1aaaf0
+		summarizeBy: none
+		sourceColumn: Performance_Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition YouTube = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Siddharth\Desktop\PE3 project\output\youtube_predictions.csv"),[Delimiter=",", Columns=23, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"post_id", type text}, {"upload_date", type datetime}, {"video_duration_min", type number}, {"avg_view_duration_sec", Int64.Type}, {"avg_view_percentage", type number}, {"subscribers_gained", Int64.Type}, {"traffic_source", type text}, {"ctr_percentage", type number}, {"impressions", Int64.Type}, {"likes", Int64.Type}, {"comments", Int64.Type}, {"shares", Int64.Type}, {"total_watch_time_hours", type number}, {"content_category", type text}, {"upload_hour", Int64.Type}, {"upload_month", Int64.Type}, {"upload_dayofmonth", Int64.Type}, {"upload_weekofyear", Int64.Type}, {"upload_weekday", type text}, {"High_Performance", Int64.Type}, {"Predicted_High_Performance", Int64.Type}, {"High_Performance_Probability", type number}, {"Performance_Segment", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

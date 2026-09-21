@@ -12,3 +12,7 @@ data/**/*.zip
 data/*.xlsx
 *.pbix
 *.zip
+tools/powerbi-report-mcp/
+powerbi/**/*.Report/.pbi/
+powerbi/**/*.Report.backup-*/
+**/.pbi/

@@ -1,6 +1,6 @@
 # Power BI Modeling MCP workflow for PostPilot AI
 
-The repository configuration in `.vscode/mcp.json` registers Microsoft's official Power BI Modeling MCP server for VS Code/Copilot. It is intended for semantic-model operations, not visual report-page authoring.
+The repository configuration in `.vscode/mcp.json` registers both the Power BI Modeling MCP and the local Power BI Report MCP. The modeling server handles the semantic model; the report server handles PBIR pages, visuals, themes, filters, and layout.
 
 ## Before connecting
 
@@ -19,6 +19,12 @@ Connect to '[exact Power BI file name]' in Power BI Desktop.
 ```
 
 Use the exact title/file name shown by Power BI Desktop. The MCP server searches for the matching local Analysis Services instance.
+
+The report-authoring server is preconfigured for:
+
+```text
+C:\Users\Siddharth\Desktop\PE3 project\powerbi\PostPilot_AI_YouTube\Power BI Project.Report
+```
 
 ## Safe validation prompts
 
@@ -46,9 +52,21 @@ Create the following measures in the appropriate tables: Total Videos, Predicted
 
 The canonical DAX is in `dashboard/PostPilot_AI_Measures.dax`.
 
-## Important limitation
+## Report-authoring prompt
 
-This MCP can modify the semantic model—tables, columns, measures, relationships, and DAX queries—but it does not create or arrange report pages, charts, cards, slicers, or themes. Those visual steps remain in Power BI Desktop. The local Streamlit dashboard is available at `http://127.0.0.1:8501` as the fully automated alternative.
+After restarting the MCP client, use:
+
+```text
+Inspect the connected PBIR report and semantic model. Do not modify anything yet.
+```
+
+After the inspection succeeds, use:
+
+```text
+Create the complete PostPilot AI YouTube dashboard. Create two pages named Channel Overview and Prediction and Hashtag Strategy. Use the exact semantic model tables YouTube and YouTubeHastags and the existing measures. Add KPI cards, category/watch-time chart, traffic-source/CTR chart, upload-hour chart, duration/watch-time scatter chart, prediction segment donut, probability-by-source chart, hashtag table, slicers, titles, spacing, and a dark navy/teal theme. Validate bindings and layout before saving.
+```
+
+The local Streamlit dashboard remains available at `http://127.0.0.1:8501` as a fully automated alternative.
 
 ## Safety
 

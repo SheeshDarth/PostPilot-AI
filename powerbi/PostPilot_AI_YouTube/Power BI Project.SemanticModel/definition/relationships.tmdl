@@ -1,0 +1,11 @@
+relationship 8f770e8f-3c32-455c-907e-3ca5cc61b1d6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: YouTube.upload_date
+	toColumn: LocalDateTable_c83a8cc3-e543-4e19-ba16-e114cc67354f.Date
+
+relationship AutoDetected_14919aa7-dbc9-4612-8fdb-80164f989f25
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: YouTubeHastags.post_id
+	toColumn: YouTube.post_id
+

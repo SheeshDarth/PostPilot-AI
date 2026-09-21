@@ -1,0 +1,156 @@
+table YouTubeHastags
+	lineageTag: 2cacb432-5094-42a6-8c56-8127835988a2
+
+	measure 'Average Hashtag Relevance' = AVERAGE(YouTubeHastags[hashtag_relevance_score])
+		lineageTag: ada671c2-0ca8-4704-9658-2267c3226b60
+
+	measure 'Average Hashtags per Video' = AVERAGE(YouTubeHastags[hashtag_count])
+		lineageTag: e20fc9f5-0f24-434d-a7f2-02be1d101031
+
+	column post_id
+		dataType: string
+		lineageTag: e6c8cb13-33ba-4fae-8d4c-ccd066bd4278
+		summarizeBy: none
+		sourceColumn: post_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column recommended_hashtags
+		dataType: string
+		lineageTag: 3756545c-7117-4e45-a4cd-da94d55b2f7b
+		summarizeBy: none
+		sourceColumn: recommended_hashtags
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_relevance_score
+		dataType: double
+		lineageTag: f17b1009-62b9-45ac-818d-b30e9ccdc6e3
+		summarizeBy: sum
+		sourceColumn: hashtag_relevance_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hashtag_generation_source
+		dataType: string
+		lineageTag: 4f0ae47a-5a29-4671-bdd4-c7cec0338986
+		summarizeBy: none
+		sourceColumn: hashtag_generation_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_count
+		dataType: int64
+		formatString: 0
+		lineageTag: a5499014-5353-4470-8a01-66182a714603
+		summarizeBy: sum
+		sourceColumn: hashtag_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_1
+		dataType: string
+		lineageTag: 80331119-f696-4c18-a0c7-372abadad951
+		summarizeBy: none
+		sourceColumn: hashtag_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_1_score
+		dataType: double
+		lineageTag: 7ae3724f-7c39-4d55-b28c-37749b12279f
+		summarizeBy: sum
+		sourceColumn: hashtag_1_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hashtag_2
+		dataType: string
+		lineageTag: a0cb2b7e-2108-4e61-9463-87d79be58e4d
+		summarizeBy: none
+		sourceColumn: hashtag_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_2_score
+		dataType: double
+		lineageTag: f26f677d-c762-4c41-9e42-e1725a2656d0
+		summarizeBy: sum
+		sourceColumn: hashtag_2_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hashtag_3
+		dataType: string
+		lineageTag: 847fdd6c-1f88-4152-9307-765abc5dda8b
+		summarizeBy: none
+		sourceColumn: hashtag_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_3_score
+		dataType: double
+		lineageTag: 95765120-33ce-4d61-ae96-1bd4a0f401a9
+		summarizeBy: sum
+		sourceColumn: hashtag_3_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hashtag_4
+		dataType: string
+		lineageTag: 6edda8bf-39ff-4ae9-a8ff-eb88da87573e
+		summarizeBy: none
+		sourceColumn: hashtag_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_4_score
+		dataType: double
+		lineageTag: 843d1b49-36ee-49c7-a6e6-337b9f33922b
+		summarizeBy: sum
+		sourceColumn: hashtag_4_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hashtag_5
+		dataType: string
+		lineageTag: 6aa7a444-067b-411b-b28f-15bd821fdb6a
+		summarizeBy: none
+		sourceColumn: hashtag_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column hashtag_5_score
+		dataType: double
+		lineageTag: ff70057e-f86e-4e6d-b56f-477c97ce2f07
+		summarizeBy: sum
+		sourceColumn: hashtag_5_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition YouTubeHastags = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Siddharth\Desktop\PE3 project\output\youtube_hashtags.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"post_id", type text}, {"recommended_hashtags", type text}, {"hashtag_relevance_score", type number}, {"hashtag_generation_source", type text}, {"hashtag_count", Int64.Type}, {"hashtag_1", type text}, {"hashtag_1_score", type number}, {"hashtag_2", type text}, {"hashtag_2_score", type number}, {"hashtag_3", type text}, {"hashtag_3_score", type number}, {"hashtag_4", type text}, {"hashtag_4_score", type number}, {"hashtag_5", type text}, {"hashtag_5_score", type number}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
