@@ -2,6 +2,8 @@
 
 Use this guide when presenting the dashboards. Every visual should answer a specific question.
 
+The Power BI page `Complete Analysis Dashboard` is the main presentation page. It combines the KPI cards, category and traffic-source comparisons, upload timing, prediction segments, probability comparisons, duration/watch-time relationship, and category decision table in one view.
+
 | Visual | Question it answers | How to read it |
 |---|---|---|
 | Watch time by category | Which content categories generate more watch time? | Higher bars indicate higher average total watch time. |
