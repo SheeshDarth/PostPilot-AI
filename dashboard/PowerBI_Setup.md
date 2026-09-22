@@ -21,7 +21,16 @@ Add these cards:
 - Total Impressions: `SUM(YouTube[impressions])`
 - Subscribers Gained: `SUM(YouTube[subscribers_gained])`
 
-Add a clustered column chart of average watch time by `content_category`, a bar chart of average CTR by `traffic_source`, a line/column chart of average view percentage by duration band, and a column chart of video count by `upload_hour`.
+Exact field bindings used by the PBIP report:
+
+| Visual | Category / X-axis | Value / Y-axis | Tooltip or detail |
+|---|---|---|---|
+| Watch Time by Category | `YouTube[content_category]` | `[Average Watch Time (Hours)]` | `[Average CTR]` |
+| CTR by Traffic Source | `YouTube[traffic_source]` | `[Average CTR]` | `[Average Watch Time (Hours)]` |
+| Upload Activity by Hour | `YouTube[upload_hour]` | `[Total Videos]` | `[Average CTR]` |
+| Video Duration vs Watch Time | `AVG(YouTube[video_duration_min])` | `AVG(YouTube[total_watch_time_hours])` | Legend: `content_category`; Details: `post_id` |
+
+For the horizontal bar chart, `traffic_source` is the Category/Y-axis and `[Average CTR]` is the X-axis/Values field.
 
 Suggested arrangement: place the five KPI cards across the top, the category and traffic-source charts in the middle, and the upload-hour chart across the bottom. Use `dashboard/PostPilot_AI_Measures.dax` as the copy source for all measures.
 
@@ -29,7 +38,17 @@ Suggested arrangement: place the five KPI cards across the top, the category and
 
 Add cards for predicted high-performance videos, average prediction probability, F1, ROC-AUC, and the decision threshold. Add a bar chart of average probability by `content_category`, a stacked column chart of `Performance_Segment`, a feature-importance bar chart using `output/youtube_feature_importance.csv`, and a table containing `post_id`, `content_category`, `traffic_source`, `video_duration_min`, `High_Performance_Probability`, and `Predicted_High_Performance`.
 
-Add a hashtag table using `YouTubeHashtags[post_id]`, `recommended_hashtags`, `hashtag_relevance_score`, and `hashtag_generation_source`. Relate `YouTubeHashtags[post_id]` to `YouTube[post_id]` with a one-to-one relationship if Power BI does not detect it automatically.
+Exact prediction-page fields:
+
+| Visual | Category / Legend | Value / X/Y-axis | Tooltip |
+|---|---|---|---|
+| High-Performance Videos by Category | `YouTube[content_category]` | `[Predicted High Videos]` | `[Average Prediction Probability]` |
+| Prediction Segment Distribution | `YouTube[Performance_Segment]` | `[Total Videos]` | `[Average Prediction Probability]` |
+| Probability by Traffic Source | `YouTube[traffic_source]` | `[Average Prediction Probability]` | `[Average CTR]` |
+
+The recommendation table contains `post_id`, `content_category`, `traffic_source`, `High_Performance_Probability`, `Predicted_High_Performance`, `YouTubeHastags[recommended_hashtags]`, and `YouTubeHastags[hashtag_relevance_score]`.
+
+Add a hashtag table using `YouTubeHastags[post_id]`, `recommended_hashtags`, `hashtag_relevance_score`, and `hashtag_generation_source`. Keep the model spelling `YouTubeHastags`. Relate `YouTubeHastags[post_id]` to `YouTube[post_id]` with a one-to-one relationship if Power BI does not detect it automatically.
 
 Suggested arrangement: place prediction KPI cards across the top, slicers down the left, the hashtag table on the right, and probability/category charts along the bottom.
 

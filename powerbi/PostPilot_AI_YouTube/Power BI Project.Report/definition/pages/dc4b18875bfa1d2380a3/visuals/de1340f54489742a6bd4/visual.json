@@ -49,6 +49,24 @@
               "nativeQueryRef": "Average CTR"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Average Watch Time (Hours)"
+                }
+              },
+              "queryRef": "YouTube.Average Watch Time (Hours)",
+              "nativeQueryRef": "Average Watch Time (Hours)"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -361,7 +379,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "dc03d23b93d976b207c8",
+        "name": "4a0e15ad87c63ac6ee5b",
         "field": {
           "Column": {
             "Expression": {
@@ -375,7 +393,7 @@
         "type": "Categorical"
       },
       {
-        "name": "a664a31a87538bfcb60c",
+        "name": "38c3424a4d18e19c54a0",
         "field": {
           "Measure": {
             "Expression": {
@@ -384,6 +402,20 @@
               }
             },
             "Property": "Average CTR"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ded233b3fe66407a6de4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Average Watch Time (Hours)"
           }
         },
         "type": "Categorical"

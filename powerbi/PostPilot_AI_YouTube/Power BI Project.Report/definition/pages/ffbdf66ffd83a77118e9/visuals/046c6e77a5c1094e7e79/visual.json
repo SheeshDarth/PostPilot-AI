@@ -48,6 +48,24 @@
               "nativeQueryRef": "Total Videos"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Average Prediction Probability"
+                }
+              },
+              "queryRef": "YouTube.Average Prediction Probability",
+              "nativeQueryRef": "Average Prediction Probability"
+            }
+          ]
         }
       }
     },
@@ -314,7 +332,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "4ced7d6f885c90a76f92",
+        "name": "44fa6e1a46fc6a3ea571",
         "field": {
           "Column": {
             "Expression": {
@@ -328,7 +346,7 @@
         "type": "Categorical"
       },
       {
-        "name": "f787fb300340d7aa5d7b",
+        "name": "d39013fef3a1c8a2f672",
         "field": {
           "Measure": {
             "Expression": {
@@ -337,6 +355,20 @@
               }
             },
             "Property": "Total Videos"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "882871f689b1befb6dd8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Average Prediction Probability"
           }
         },
         "type": "Categorical"

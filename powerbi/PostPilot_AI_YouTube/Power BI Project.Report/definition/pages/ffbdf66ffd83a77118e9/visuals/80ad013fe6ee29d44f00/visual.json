@@ -49,6 +49,24 @@
               "nativeQueryRef": "Average Prediction Probability"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Average CTR"
+                }
+              },
+              "queryRef": "YouTube.Average CTR",
+              "nativeQueryRef": "Average CTR"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -361,7 +379,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1fcca02ed437b0a619de",
+        "name": "cae26bfe8810b444fd8a",
         "field": {
           "Column": {
             "Expression": {
@@ -375,7 +393,7 @@
         "type": "Categorical"
       },
       {
-        "name": "6c727e455d467fc43c43",
+        "name": "9aed56da9ef71d3319f8",
         "field": {
           "Measure": {
             "Expression": {
@@ -384,6 +402,20 @@
               }
             },
             "Property": "Average Prediction Probability"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "25360b43792cfae34805",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Average CTR"
           }
         },
         "type": "Categorical"
