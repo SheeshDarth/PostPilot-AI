@@ -15,5 +15,131 @@
   "foregroundNeutralSecondary": "#A8B3C7",
   "backgroundLight": "#152238",
   "backgroundNeutral": "#1C2C44",
-  "tableAccent": "#18C5C9"
+  "tableAccent": "#18C5C9",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "titleFontColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            },
+            "fontSize": 14
+          }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "foregroundNeutralSecondary"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#35506F"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "foregroundNeutralSecondary"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#35506F"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "cardVisual": {
+      "*": {
+        "referenceLabelValue": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            }
+          }
+        ],
+        "referenceLabelTitle": [
+          {
+            "titleFontColor": {
+              "solid": {
+                "color": "foregroundNeutralSecondary"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "multiRowCard": {
+      "*": {
+        "card": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "backgroundLight"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            }
+          }
+        ],
+        "columnHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "foreground"
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": "backgroundNeutral"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
 }
