@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "e57bc77c90632d562ff8",
+  "displayName": "Python Comparison & Recommendations",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

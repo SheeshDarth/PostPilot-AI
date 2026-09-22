@@ -52,6 +52,18 @@ Add a hashtag table using `YouTubeHastags[post_id]`, `recommended_hashtags`, `ha
 
 Suggested arrangement: place prediction KPI cards across the top, slicers down the left, the hashtag table on the right, and probability/category charts along the bottom.
 
+## Page 3 — Python comparison and recommendations
+
+This page mirrors the Python dashboard's comparison views. It contains:
+
+- KPI cards for predicted high rate, average hashtags per video, average hashtag relevance, average prediction probability, and total videos.
+- Slicers for content category, traffic source, performance segment, and hashtag generation source.
+- A **Category Comparison** table with content category, video count, average watch time, average CTR, average prediction probability, and predicted high videos.
+- A **Highest-Probability Videos** table with post ID, category, traffic source, duration, probability, and prediction flag.
+- A **Hashtag Quality and Recommendations** table with recommended hashtags, relevance score, hashtag count, and generation source.
+
+The comparison columns use conditional color gradients: teal/gold for watch time, teal for CTR, blue/purple for prediction probability, red/green for high-performance probability, and slate/teal for hashtag relevance. Higher values are visually stronger, making category and video comparisons easy to infer.
+
 ## Measures
 
 ```DAX
