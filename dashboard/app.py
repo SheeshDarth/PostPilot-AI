@@ -34,18 +34,24 @@ def data_signature(required_files: list[Path]) -> tuple[int, ...]:
 
 
 @st.cache_data
-def load_data(signature: tuple[int, ...]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_data(signature: tuple[int, ...]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Load the latest pipeline outputs; signature makes the cache refresh-aware."""
     predictions = pd.read_csv(OUTPUT / "youtube_predictions.csv")
     hashtags = pd.read_csv(OUTPUT / "youtube_hashtags.csv")
     metrics = pd.read_csv(OUTPUT / "youtube_model_metrics.csv")
-    return predictions, hashtags, metrics
+    feature_importance = pd.read_csv(OUTPUT / "youtube_feature_importance.csv")
+    return predictions, hashtags, metrics, feature_importance
 
 
 st.title("PostPilot AI")
 st.caption("YouTube performance prediction and pre-publication hashtag recommendations")
 
-required = [OUTPUT / "youtube_predictions.csv", OUTPUT / "youtube_hashtags.csv", OUTPUT / "youtube_model_metrics.csv"]
+required = [
+    OUTPUT / "youtube_predictions.csv",
+    OUTPUT / "youtube_hashtags.csv",
+    OUTPUT / "youtube_model_metrics.csv",
+    OUTPUT / "youtube_feature_importance.csv",
+]
 missing = [str(path) for path in required if not path.exists()]
 if missing:
     st.error("Dashboard data is missing. Run RUN_PROJECT.ps1 first.")
@@ -62,7 +68,7 @@ with st.sidebar:
     latest_update = max(path.stat().st_mtime for path in required)
     st.caption(f"Data refreshed: {datetime.fromtimestamp(latest_update):%d %b %Y, %H:%M:%S}")
 
-predictions, hashtags, metrics = load_data(signature)
+predictions, hashtags, metrics, feature_importance = load_data(signature)
 merged = predictions.merge(hashtags, on="post_id", how="left")
 
 with st.sidebar:
@@ -120,6 +126,28 @@ with overview:
     hourly = filtered.groupby("upload_hour").size().reindex(range(24), fill_value=0)
     st.line_chart(hourly, color="#7c9cff")
 
+    left, right = st.columns(2)
+    with left:
+        st.write("### Average watch time by weekday")
+        weekday_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        weekday_chart = filtered.groupby("upload_weekday")["total_watch_time_hours"].mean().reindex(weekday_order).dropna()
+        st.bar_chart(weekday_chart, color="#b78cff", height=280)
+    with right:
+        st.write("### High-performance rate by traffic source")
+        source_rate = filtered.groupby("traffic_source")["Predicted_High_Performance"].mean().sort_values(ascending=False).mul(100)
+        st.bar_chart(source_rate.rename("Predicted high rate (%)"), color="#39e39b", height=280)
+
+    st.write("### Video duration versus total watch time")
+    scatter_columns = ["video_duration_min", "total_watch_time_hours", "content_category", "impressions"]
+    st.scatter_chart(
+        filtered[scatter_columns].rename(columns={"video_duration_min": "Video duration (min)", "total_watch_time_hours": "Total watch time (hours)"}),
+        x="Video duration (min)",
+        y="Total watch time (hours)",
+        color="content_category",
+        size="impressions",
+        height=360,
+    )
+
     st.write("### Compare content categories")
     category_compare = filtered.groupby("content_category").agg(
         Videos=("post_id", "count"),
@@ -169,6 +197,26 @@ with predictions_tab:
         segment_counts = filtered["Performance_Segment"].value_counts()
         st.bar_chart(segment_counts, color="#ff7a9e")
 
+    left, right = st.columns(2)
+    with left:
+        st.write("### Average prediction probability by traffic source")
+        source_probability = filtered.groupby("traffic_source")["High_Performance_Probability"].mean().sort_values(ascending=False).mul(100)
+        st.bar_chart(source_probability.rename("Average probability (%)"), color="#7c9cff", height=280)
+    with right:
+        st.write("### Prediction probability distribution")
+        probability_bins = pd.cut(
+            filtered["High_Performance_Probability"],
+            bins=[0, .2, .4, .6, .8, 1.0],
+            labels=["0–20%", "20–40%", "40–60%", "60–80%", "80–100%"],
+            include_lowest=True,
+        ).value_counts().reindex(["0–20%", "20–40%", "40–60%", "60–80%", "80–100%"], fill_value=0)
+        st.bar_chart(probability_bins.rename("Videos"), color="#ffbf69", height=280)
+
+    st.write("### What drives the model? Top feature importance")
+    top_features = feature_importance.head(12).copy()
+    top_features["Feature"] = top_features["Feature"].str.replace(r"^(categorical|numerical)__", "", regex=True).str.replace("_", " ")
+    st.bar_chart(top_features.set_index("Feature")["Importance"].sort_values(), color="#2bd5d8", height=360)
+
     st.markdown(
         '<div class="comparison-note"><b>How to read this page:</b> use the probability cards for overall confidence, then compare categories and traffic sources to identify where high-performance videos are most likely.</div>',
         unsafe_allow_html=True,
@@ -193,6 +241,15 @@ with hashtags_tab:
     cards[2].metric("Avg hashtags/video", f"{filtered['hashtag_count'].mean():.1f}")
 
     st.info("These are relevance suggestions, not a guarantee of virality. The current dataset uses category/traffic-source fallback metadata because it has no titles or transcripts.")
+    left, right = st.columns(2)
+    with left:
+        st.write("### Average hashtag relevance by source")
+        source_relevance = filtered.groupby("hashtag_generation_source")["hashtag_relevance_score"].mean().sort_values(ascending=False)
+        st.bar_chart(source_relevance, color="#39e39b", height=280)
+    with right:
+        st.write("### Average hashtags per video by category")
+        category_hashtags = filtered.groupby("content_category")["hashtag_count"].mean().sort_values(ascending=False)
+        st.bar_chart(category_hashtags, color="#ff7a9e", height=280)
     hashtag_columns = ["post_id", "content_category", "traffic_source", "recommended_hashtags", "hashtag_relevance_score", "hashtag_generation_source"]
     st.dataframe(
         filtered[hashtag_columns].sort_values("hashtag_relevance_score", ascending=False)
