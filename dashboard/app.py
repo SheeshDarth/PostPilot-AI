@@ -115,29 +115,35 @@ with overview:
     left, right = st.columns(2)
     with left:
         st.write("### Average watch time by category")
+        st.caption("Compares the typical total watch time for each content category.")
         category_chart = filtered.groupby("content_category")["total_watch_time_hours"].mean().sort_values(ascending=False)
         st.bar_chart(category_chart, color="#27d3d8")
     with right:
         st.write("### Average CTR by traffic source")
+        st.caption("Shows which discovery sources are associated with stronger click-through rates.")
         source_chart = filtered.groupby("traffic_source")["ctr_percentage"].mean().sort_values(ascending=False)
         st.bar_chart(source_chart, color="#ffbf69")
 
     st.write("### Upload volume by hour")
+    st.caption("Counts videos by upload hour; use this to inspect timing coverage in the dataset.")
     hourly = filtered.groupby("upload_hour").size().reindex(range(24), fill_value=0)
     st.line_chart(hourly, color="#7c9cff")
 
     left, right = st.columns(2)
     with left:
         st.write("### Average watch time by weekday")
+        st.caption("Compares typical watch time across Monday–Sunday.")
         weekday_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         weekday_chart = filtered.groupby("upload_weekday")["total_watch_time_hours"].mean().reindex(weekday_order).dropna()
         st.bar_chart(weekday_chart, color="#b78cff", height=280)
     with right:
         st.write("### High-performance rate by traffic source")
+        st.caption("Shows the percentage of filtered videos predicted as high performance for each source.")
         source_rate = filtered.groupby("traffic_source")["Predicted_High_Performance"].mean().sort_values(ascending=False).mul(100)
         st.bar_chart(source_rate.rename("Predicted high rate (%)"), color="#39e39b", height=280)
 
     st.write("### Video duration versus total watch time")
+    st.caption("Each point is a video; color is category and point size represents impressions.")
     scatter_columns = ["video_duration_min", "total_watch_time_hours", "content_category", "impressions"]
     st.scatter_chart(
         filtered[scatter_columns].rename(columns={"video_duration_min": "Video duration (min)", "total_watch_time_hours": "Total watch time (hours)"}),
@@ -190,20 +196,24 @@ with predictions_tab:
     left, right = st.columns(2)
     with left:
         st.write("### Predicted high-performance videos by category")
+        st.caption("Counts the videos classified as high performance in each category.")
         high_by_category = filtered.groupby("content_category")["Predicted_High_Performance"].sum().sort_values(ascending=False)
         st.bar_chart(high_by_category, color="#39e39b")
     with right:
         st.write("### Prediction segment distribution")
+        st.caption("Groups videos into low-, medium-, and high-intent probability bands.")
         segment_counts = filtered["Performance_Segment"].value_counts()
         st.bar_chart(segment_counts, color="#ff7a9e")
 
     left, right = st.columns(2)
     with left:
         st.write("### Average prediction probability by traffic source")
+        st.caption("Compares model confidence across discovery sources.")
         source_probability = filtered.groupby("traffic_source")["High_Performance_Probability"].mean().sort_values(ascending=False).mul(100)
         st.bar_chart(source_probability.rename("Average probability (%)"), color="#7c9cff", height=280)
     with right:
         st.write("### Prediction probability distribution")
+        st.caption("Shows how many videos fall into each probability range.")
         probability_bins = pd.cut(
             filtered["High_Performance_Probability"],
             bins=[0, .2, .4, .6, .8, 1.0],
@@ -213,6 +223,7 @@ with predictions_tab:
         st.bar_chart(probability_bins.rename("Videos"), color="#ffbf69", height=280)
 
     st.write("### What drives the model? Top feature importance")
+    st.caption("Higher importance means the Random Forest used that feature more often when splitting the training data; it is not causal evidence.")
     top_features = feature_importance.head(12).copy()
     top_features["Feature"] = top_features["Feature"].str.replace(r"^(categorical|numerical)__", "", regex=True).str.replace("_", " ")
     st.bar_chart(top_features.set_index("Feature")["Importance"].sort_values(), color="#2bd5d8", height=360)
@@ -244,10 +255,12 @@ with hashtags_tab:
     left, right = st.columns(2)
     with left:
         st.write("### Average hashtag relevance by source")
+        st.caption("Compares the average relevance score produced by each hashtag-generation method.")
         source_relevance = filtered.groupby("hashtag_generation_source")["hashtag_relevance_score"].mean().sort_values(ascending=False)
         st.bar_chart(source_relevance, color="#39e39b", height=280)
     with right:
         st.write("### Average hashtags per video by category")
+        st.caption("Shows how many recommendations are returned for each category on average.")
         category_hashtags = filtered.groupby("content_category")["hashtag_count"].mean().sort_values(ascending=False)
         st.bar_chart(category_hashtags, color="#ff7a9e", height=280)
     hashtag_columns = ["post_id", "content_category", "traffic_source", "recommended_hashtags", "hashtag_relevance_score", "hashtag_generation_source"]

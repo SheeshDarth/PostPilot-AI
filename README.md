@@ -6,6 +6,8 @@ For a non-technical teammate, start with [TEAMMATE_GUIDE.md](TEAMMATE_GUIDE.md) 
 
 For the full non-technical explanation of the workflow, model, dashboard visuals, interpretation, and presentation flow, see [PROJECT_EXPLANATION.md](PROJECT_EXPLANATION.md).
 
+Use [CHART_GUIDE.md](CHART_GUIDE.md) to understand what each Python and Power BI visual means and how to present it.
+
 ## Current status
 
 This repository contains the reproducible Python pipeline. The working dataset is downloaded locally from Kaggle and is intentionally not included in Git because it is raw data. See `data/README.md` for provenance.
