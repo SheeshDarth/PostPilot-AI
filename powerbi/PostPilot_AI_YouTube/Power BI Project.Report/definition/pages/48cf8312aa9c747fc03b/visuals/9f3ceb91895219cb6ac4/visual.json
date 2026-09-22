@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "e7eaddfbbd240e84e9b8",
+  "name": "9f3ceb91895219cb6ac4",
   "position": {
-    "x": 625,
+    "x": 15,
     "y": 125,
-    "z": 9000,
+    "z": 7000,
     "height": 50,
     "width": 300,
-    "tabOrder": 9000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "Performance_Segment"
+                  "Property": "content_category"
                 }
               },
-              "queryRef": "YouTube.Performance_Segment",
-              "nativeQueryRef": "Performance_Segment",
+              "queryRef": "YouTube.content_category",
+              "nativeQueryRef": "content_category",
               "active": true
             }
           ]
@@ -43,7 +43,7 @@
                     "Entity": "YouTube"
                   }
                 },
-                "Property": "Performance_Segment"
+                "Property": "content_category"
               }
             },
             "direction": "Ascending"
@@ -84,7 +84,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "12D"
                 }
               }
             },
@@ -92,6 +92,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C2C44'"
+                    }
+                  }
                 }
               }
             }
@@ -134,7 +156,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Performance Segment'"
+                  "Value": "'Content Category'"
                 }
               }
             },
@@ -234,48 +256,13 @@
             }
           }
         }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C2C44'"
-                    }
-                  }
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            }
-          }
-        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "99f055adc0e9590d28c0",
+        "name": "cc6bbb7436e26b3ab556",
         "field": {
           "Column": {
             "Expression": {
@@ -283,7 +270,7 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "Performance_Segment"
+            "Property": "content_category"
           }
         },
         "type": "Categorical"

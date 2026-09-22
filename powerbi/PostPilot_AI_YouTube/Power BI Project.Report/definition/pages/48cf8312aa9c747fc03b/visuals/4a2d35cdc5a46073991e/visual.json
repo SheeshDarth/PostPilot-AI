@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "7850a9515fa269575a40",
+  "name": "4a2d35cdc5a46073991e",
   "position": {
-    "x": 255,
+    "x": 15,
     "y": 55,
-    "z": 3000,
+    "z": 2000,
     "height": 65,
     "width": 235,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "card",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "Average Hashtags per Video"
+                  "Property": "Predicted High Rate"
                 }
               },
-              "queryRef": "YouTubeHastags.Average Hashtags per Video",
-              "nativeQueryRef": "Average Hashtags per Video"
+              "queryRef": "YouTube.Predicted High Rate",
+              "nativeQueryRef": "Predicted High Rate"
             }
           ]
         }
@@ -41,7 +41,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Hashtags per Video'"
+                  "Value": "'Predicted High Rate'"
                 }
               }
             },
@@ -141,75 +141,6 @@
             }
           }
         }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "24D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "categoryLabels": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#A8B3C7'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "objects": {
@@ -259,7 +190,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "24D"
                 }
               }
             },
@@ -267,6 +198,24 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -292,21 +241,59 @@
             }
           }
         }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8B3C7'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "7a41a0d42e59e26ab96c",
+        "name": "5e9ec9fb505890309a96",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "Average Hashtags per Video"
+            "Property": "Predicted High Rate"
           }
         },
         "type": "Categorical"

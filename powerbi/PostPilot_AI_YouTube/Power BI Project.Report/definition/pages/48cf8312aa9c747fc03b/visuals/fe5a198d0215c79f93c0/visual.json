@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "5d346e335d998c94827a",
+  "name": "fe5a198d0215c79f93c0",
   "position": {
     "x": 15,
     "y": 180,
@@ -211,63 +211,6 @@
             }
           }
         }
-      ],
-      "values": [
-        {
-          "properties": {
-            "fontColorPrimary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#D8E5F2'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorPrimary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#152238'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C2C44'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "objects": {
@@ -354,10 +297,54 @@
       "values": [
         {
           "properties": {
-            "wordWrap": {
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D8E5F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#152238'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C2C44'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "11D"
                 }
               }
             }
@@ -546,7 +533,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "31a920955ff00c7d7e0e",
+        "name": "b47228f84e551c465bdf",
         "field": {
           "Column": {
             "Expression": {
@@ -560,7 +547,7 @@
         "type": "Categorical"
       },
       {
-        "name": "c18f08f61c2cdb2a6bda",
+        "name": "73c0b8f241863121f329",
         "field": {
           "Measure": {
             "Expression": {
@@ -574,7 +561,7 @@
         "type": "Categorical"
       },
       {
-        "name": "340df2fd755d985c55c6",
+        "name": "1a85dca5e27541ccf8e9",
         "field": {
           "Measure": {
             "Expression": {
@@ -588,7 +575,7 @@
         "type": "Categorical"
       },
       {
-        "name": "15e04164e14cb873ad0e",
+        "name": "b15d01fa8ed76e0b19c8",
         "field": {
           "Measure": {
             "Expression": {
@@ -602,7 +589,7 @@
         "type": "Categorical"
       },
       {
-        "name": "e3c7bbb66e11095ec47c",
+        "name": "a8f24beb3b19f43e7512",
         "field": {
           "Measure": {
             "Expression": {
@@ -616,7 +603,7 @@
         "type": "Categorical"
       },
       {
-        "name": "b8ff75fdb04b5d94b1cf",
+        "name": "987ce7c1a0d76d52b10a",
         "field": {
           "Measure": {
             "Expression": {

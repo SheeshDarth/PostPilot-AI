@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "18dbe356575d482aed73",
+  "name": "844a7006fab770397855",
   "position": {
-    "x": 15,
+    "x": 320,
     "y": 125,
-    "z": 7000,
+    "z": 8000,
     "height": 50,
     "width": 300,
-    "tabOrder": 7000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "content_category"
+                  "Property": "traffic_source"
                 }
               },
-              "queryRef": "YouTube.content_category",
-              "nativeQueryRef": "content_category",
+              "queryRef": "YouTube.traffic_source",
+              "nativeQueryRef": "traffic_source",
               "active": true
             }
           ]
@@ -43,7 +43,7 @@
                     "Entity": "YouTube"
                   }
                 },
-                "Property": "content_category"
+                "Property": "traffic_source"
               }
             },
             "direction": "Ascending"
@@ -84,7 +84,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "12D"
                 }
               }
             },
@@ -92,6 +92,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C2C44'"
+                    }
+                  }
                 }
               }
             }
@@ -134,7 +156,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Content Category'"
+                  "Value": "'Traffic Source'"
                 }
               }
             },
@@ -234,48 +256,13 @@
             }
           }
         }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C2C44'"
-                    }
-                  }
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            }
-          }
-        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "a6f61ac203a148d4c432",
+        "name": "2c4a4835b50de20e47b9",
         "field": {
           "Column": {
             "Expression": {
@@ -283,7 +270,7 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "content_category"
+            "Property": "traffic_source"
           }
         },
         "type": "Categorical"

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "1d9ffbd7fee6c74efb43",
+  "name": "6e2ddacb8ec7d9686d90",
   "position": {
-    "x": 15,
-    "y": 405,
-    "z": 13000,
-    "height": 295,
-    "width": 1250,
-    "tabOrder": 13000
+    "x": 640,
+    "y": 180,
+    "z": 12000,
+    "height": 220,
+    "width": 625,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
                   "Property": "post_id"
                 }
               },
-              "queryRef": "YouTubeHastags.post_id",
+              "queryRef": "YouTube.post_id",
               "nativeQueryRef": "post_id"
             },
             {
@@ -34,56 +34,70 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "recommended_hashtags"
+                  "Property": "content_category"
                 }
               },
-              "queryRef": "YouTubeHastags.recommended_hashtags",
-              "nativeQueryRef": "recommended_hashtags"
+              "queryRef": "YouTube.content_category",
+              "nativeQueryRef": "content_category"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "hashtag_relevance_score"
+                  "Property": "traffic_source"
                 }
               },
-              "queryRef": "YouTubeHastags.hashtag_relevance_score",
-              "nativeQueryRef": "hashtag_relevance_score"
+              "queryRef": "YouTube.traffic_source",
+              "nativeQueryRef": "traffic_source"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "hashtag_count"
+                  "Property": "video_duration_min"
                 }
               },
-              "queryRef": "YouTubeHastags.hashtag_count",
-              "nativeQueryRef": "hashtag_count"
+              "queryRef": "YouTube.video_duration_min",
+              "nativeQueryRef": "video_duration_min"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "hashtag_generation_source"
+                  "Property": "High_Performance_Probability"
                 }
               },
-              "queryRef": "YouTubeHastags.hashtag_generation_source",
-              "nativeQueryRef": "hashtag_generation_source"
+              "queryRef": "YouTube.High_Performance_Probability",
+              "nativeQueryRef": "High_Performance_Probability"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Predicted_High_Performance"
+                }
+              },
+              "queryRef": "YouTube.Predicted_High_Performance",
+              "nativeQueryRef": "Predicted_High_Performance"
             }
           ]
         }
@@ -97,7 +111,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Hashtag Quality and Recommendations'"
+                  "Value": "'Highest-Probability Videos'"
                 }
               }
             },
@@ -197,63 +211,6 @@
             }
           }
         }
-      ],
-      "values": [
-        {
-          "properties": {
-            "fontColorPrimary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#D8E5F2'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorPrimary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#152238'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C2C44'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "objects": {
@@ -340,6 +297,61 @@
       "values": [
         {
           "properties": {
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D8E5F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#152238'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C2C44'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
             "backColor": {
               "solid": {
                 "color": {
@@ -351,10 +363,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "YouTubeHastags"
+                                  "Entity": "YouTube"
                                 }
                               },
-                              "Property": "hashtag_relevance_score"
+                              "Property": "High_Performance_Probability"
                             }
                           },
                           "Function": 0
@@ -365,14 +377,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#334155'"
+                                "Value": "'#7F1D1D'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#14B8A6'"
+                                "Value": "'#22C55E'"
                               }
                             }
                           },
@@ -399,7 +411,7 @@
                 }
               }
             ],
-            "metadata": "Sum(YouTubeHastags.hashtag_relevance_score)"
+            "metadata": "Sum(YouTube.High_Performance_Probability)"
           }
         }
       ]
@@ -408,12 +420,12 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "607ca23a8a39c88b2236",
+        "name": "0d4ff2bb4c88de387f79",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
             "Property": "post_id"
@@ -422,57 +434,71 @@
         "type": "Categorical"
       },
       {
-        "name": "ea65bd220476d4c979a4",
+        "name": "d73ad26ef54ad8b24e70",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "recommended_hashtags"
+            "Property": "content_category"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "7bc2fa4d0081aeab050f",
+        "name": "91b1e00f99e885311bf2",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "hashtag_relevance_score"
+            "Property": "traffic_source"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "2a32038869db01060e8f",
+        "name": "1c388351cb50522ae7fe",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "hashtag_count"
+            "Property": "video_duration_min"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "7c03bc5aaeadddbf4cb6",
+        "name": "9d34303839095473e6ea",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "hashtag_generation_source"
+            "Property": "High_Performance_Probability"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "84c6e088a065675ceb5e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Predicted_High_Performance"
           }
         },
         "type": "Categorical"
