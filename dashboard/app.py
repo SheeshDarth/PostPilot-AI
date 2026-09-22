@@ -1,6 +1,7 @@
 """Local PostPilot AI dashboard for YouTube predictions and hashtags."""
 
 from pathlib import Path
+from datetime import datetime
 
 import pandas as pd
 import streamlit as st
@@ -27,8 +28,14 @@ st.markdown(
 )
 
 
+def data_signature(required_files: list[Path]) -> tuple[int, ...]:
+    """Return a cache key that changes whenever pipeline outputs change."""
+    return tuple(path.stat().st_mtime_ns for path in required_files)
+
+
 @st.cache_data
-def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_data(signature: tuple[int, ...]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Load the latest pipeline outputs; signature makes the cache refresh-aware."""
     predictions = pd.read_csv(OUTPUT / "youtube_predictions.csv")
     hashtags = pd.read_csv(OUTPUT / "youtube_hashtags.csv")
     metrics = pd.read_csv(OUTPUT / "youtube_model_metrics.csv")
@@ -45,18 +52,34 @@ if missing:
     st.code("powershell -ExecutionPolicy Bypass -File .\\RUN_PROJECT.ps1", language="powershell")
     st.stop()
 
-predictions, hashtags, metrics = load_data()
-merged = predictions.merge(hashtags, on="post_id", how="left")
+signature = data_signature(required)
 
 with st.sidebar:
     st.header("Filters")
+    if st.button("Refresh latest pipeline data", use_container_width=True):
+        st.cache_data.clear()
+        st.rerun()
+    latest_update = max(path.stat().st_mtime for path in required)
+    st.caption(f"Data refreshed: {datetime.fromtimestamp(latest_update):%d %b %Y, %H:%M:%S}")
+
+predictions, hashtags, metrics = load_data(signature)
+merged = predictions.merge(hashtags, on="post_id", how="left")
+
+with st.sidebar:
     categories = sorted(merged["content_category"].dropna().unique())
-    selected_categories = st.multiselect("Content category", categories, default=categories)
     sources = sorted(merged["traffic_source"].dropna().unique())
-    selected_sources = st.multiselect("Traffic source", sources, default=sources)
     segments = sorted(merged["Performance_Segment"].dropna().unique())
-    selected_segments = st.multiselect("Performance segment", segments, default=segments)
-    min_probability = st.slider("Minimum prediction probability", 0.0, 1.0, 0.0, 0.01)
+    if st.button("Reset all filters", use_container_width=True):
+        st.session_state["category_filter"] = categories
+        st.session_state["source_filter"] = sources
+        st.session_state["segment_filter"] = segments
+        st.session_state["probability_filter"] = 0.0
+        st.rerun()
+
+    selected_categories = st.multiselect("Content category", categories, default=categories, key="category_filter")
+    selected_sources = st.multiselect("Traffic source", sources, default=sources, key="source_filter")
+    selected_segments = st.multiselect("Performance segment", segments, default=segments, key="segment_filter")
+    min_probability = st.slider("Minimum prediction probability", 0.0, 1.0, 0.0, 0.01, key="probability_filter")
 
 filtered = merged[
     merged["content_category"].isin(selected_categories)
@@ -68,6 +91,8 @@ filtered = merged[
 if filtered.empty:
     st.warning("No videos match the selected filters.")
     st.stop()
+
+st.info(f"Showing {len(filtered):,} of {len(merged):,} videos after filters. Change a filter or refresh the pipeline outputs to update every visual.")
 
 metric_row = metrics.iloc[0]
 overview, predictions_tab, hashtags_tab = st.tabs(["Overview", "Predictions", "Hashtags"])
@@ -108,6 +133,23 @@ with overview:
         use_container_width=True,
     )
 
+    st.write("### Dynamic category comparison")
+    comparison_options = {
+        "Average watch time (hours)": "total_watch_time_hours",
+        "Average CTR (%)": "ctr_percentage",
+        "Average prediction probability": "High_Performance_Probability",
+        "Predicted high-performance videos": "Predicted_High_Performance",
+    }
+    selected_metric_label = st.selectbox("Metric to compare", list(comparison_options), key="overview_compare_metric")
+    selected_metric = comparison_options[selected_metric_label]
+    dynamic_comparison = (
+        filtered.groupby("content_category")[selected_metric]
+        .mean()
+        .sort_values(ascending=False)
+        .rename(selected_metric_label)
+    )
+    st.bar_chart(dynamic_comparison, color="#7c9cff", height=280)
+
 with predictions_tab:
     st.subheader("Prediction performance")
     cards = st.columns(5)
@@ -135,6 +177,13 @@ with predictions_tab:
     st.write("### Highest-probability videos")
     prediction_columns = ["post_id", "content_category", "traffic_source", "video_duration_min", "High_Performance_Probability", "Predicted_High_Performance"]
     st.dataframe(filtered[prediction_columns].sort_values("High_Performance_Probability", ascending=False).head(100), use_container_width=True, hide_index=True)
+    st.download_button(
+        "Download filtered predictions CSV",
+        filtered[prediction_columns].to_csv(index=False).encode("utf-8"),
+        file_name="postpilot_filtered_predictions.csv",
+        mime="text/csv",
+        use_container_width=True,
+    )
 
 with hashtags_tab:
     st.subheader("Hashtag recommendations")
@@ -152,6 +201,13 @@ with hashtags_tab:
         use_container_width=True,
         hide_index=True,
     )
+    st.download_button(
+        "Download filtered hashtag recommendations CSV",
+        filtered[hashtag_columns].to_csv(index=False).encode("utf-8"),
+        file_name="postpilot_filtered_hashtags.csv",
+        mime="text/csv",
+        use_container_width=True,
+    )
 
 st.divider()
-st.caption("PostPilot AI • Generated from the local Python pipeline • Static academic dataset")
+st.caption("PostPilot AI • Generated from local pipeline outputs • Refresh-aware academic dataset")
