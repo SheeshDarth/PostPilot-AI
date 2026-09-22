@@ -11,6 +11,21 @@ OUTPUT = ROOT / "output"
 
 st.set_page_config(page_title="PostPilot AI", page_icon="▶", layout="wide")
 
+st.markdown(
+    """
+    <style>
+    .stApp { background: linear-gradient(135deg, #08111f 0%, #10243d 52%, #123c4c 100%); }
+    [data-testid="stHeader"] { background: rgba(8, 17, 31, 0.85); }
+    [data-testid="stMetric"] { background: linear-gradient(135deg, #183653, #155667); border: 1px solid #2bd5d8; border-radius: 12px; padding: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+    [data-testid="stMetricLabel"] { color: #bfe8ee; }
+    [data-testid="stMetricValue"] { color: #ffffff; }
+    h1, h2, h3 { color: #f7fbff; }
+    .comparison-note { background: #183653; border-left: 5px solid #2bd5d8; border-radius: 8px; padding: 12px 16px; color: #eafcff; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 @st.cache_data
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -70,15 +85,28 @@ with overview:
     with left:
         st.write("### Average watch time by category")
         category_chart = filtered.groupby("content_category")["total_watch_time_hours"].mean().sort_values(ascending=False)
-        st.bar_chart(category_chart)
+        st.bar_chart(category_chart, color="#27d3d8")
     with right:
         st.write("### Average CTR by traffic source")
         source_chart = filtered.groupby("traffic_source")["ctr_percentage"].mean().sort_values(ascending=False)
-        st.bar_chart(source_chart)
+        st.bar_chart(source_chart, color="#ffbf69")
 
     st.write("### Upload volume by hour")
     hourly = filtered.groupby("upload_hour").size().reindex(range(24), fill_value=0)
-    st.line_chart(hourly)
+    st.line_chart(hourly, color="#7c9cff")
+
+    st.write("### Compare content categories")
+    category_compare = filtered.groupby("content_category").agg(
+        Videos=("post_id", "count"),
+        Avg_Watch_Hours=("total_watch_time_hours", "mean"),
+        Avg_CTR=("ctr_percentage", "mean"),
+        Avg_Probability=("High_Performance_Probability", "mean"),
+    ).sort_values("Avg_Probability", ascending=False)
+    st.dataframe(
+        category_compare.style.background_gradient(cmap="YlGnBu", subset=["Avg_Watch_Hours", "Avg_CTR", "Avg_Probability"])
+        .format({"Avg_Watch_Hours": "{:,.0f}", "Avg_CTR": "{:.2f}%", "Avg_Probability": "{:.1%}"}),
+        use_container_width=True,
+    )
 
 with predictions_tab:
     st.subheader("Prediction performance")
@@ -93,11 +121,16 @@ with predictions_tab:
     with left:
         st.write("### Predicted high-performance videos by category")
         high_by_category = filtered.groupby("content_category")["Predicted_High_Performance"].sum().sort_values(ascending=False)
-        st.bar_chart(high_by_category)
+        st.bar_chart(high_by_category, color="#39e39b")
     with right:
         st.write("### Prediction segment distribution")
         segment_counts = filtered["Performance_Segment"].value_counts()
-        st.bar_chart(segment_counts)
+        st.bar_chart(segment_counts, color="#ff7a9e")
+
+    st.markdown(
+        '<div class="comparison-note"><b>How to read this page:</b> use the probability cards for overall confidence, then compare categories and traffic sources to identify where high-performance videos are most likely.</div>',
+        unsafe_allow_html=True,
+    )
 
     st.write("### Highest-probability videos")
     prediction_columns = ["post_id", "content_category", "traffic_source", "video_duration_min", "High_Performance_Probability", "Predicted_High_Performance"]
@@ -112,7 +145,13 @@ with hashtags_tab:
 
     st.info("These are relevance suggestions, not a guarantee of virality. The current dataset uses category/traffic-source fallback metadata because it has no titles or transcripts.")
     hashtag_columns = ["post_id", "content_category", "traffic_source", "recommended_hashtags", "hashtag_relevance_score", "hashtag_generation_source"]
-    st.dataframe(filtered[hashtag_columns].sort_values("hashtag_relevance_score", ascending=False), use_container_width=True, hide_index=True)
+    st.dataframe(
+        filtered[hashtag_columns].sort_values("hashtag_relevance_score", ascending=False)
+        .style.background_gradient(cmap="PuBuGn", subset=["hashtag_relevance_score"])
+        .format({"hashtag_relevance_score": "{:.3f}"}),
+        use_container_width=True,
+        hide_index=True,
+    )
 
 st.divider()
 st.caption("PostPilot AI • Generated from the local Python pipeline • Static academic dataset")
