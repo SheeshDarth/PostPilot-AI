@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "4b3a2826359e9a0b24d3",
   "position": {
-    "x": 229.44444020589194,
-    "y": 61.777784559461786,
+    "x": 215,
+    "y": 60,
     "z": 3000,
     "height": 95,
     "width": 190,
@@ -40,7 +40,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
+                  "Value": "8D"
                 }
               }
             },
@@ -48,24 +48,6 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -87,7 +69,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "8D"
                 }
               }
             },
@@ -95,35 +77,6 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#203653'"
-                    }
-                  }
                 }
               }
             }
@@ -145,7 +98,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#152A45'"
+                      "Value": "'#152238'"
                     }
                   }
                 }

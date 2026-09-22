@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "a441cd4a28b35998d419",
   "position": {
     "x": 15,
@@ -19,28 +19,22 @@
               {
                 "textRuns": [
                   {
-                    "value": "P",
+                    "value": "POSTPILOT AI  |  PREDICTION & HASHTAG STRATEGY",
                     "textStyle": {
+                      "color": "#F4F7FB",
                       "fontWeight": "bold",
-                      "fontSize": "20pt",
-                      "color": "#f4f7fb"
-                    }
-                  },
-                  {
-                    "value": "OSTPILOT AI  |  PREDICTION & HASHTAG STRATEGY",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "20pt",
-                      "color": "#000000"
+                      "fontSize": "20pt"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }
         }
       ]
     },
+    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -62,7 +56,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

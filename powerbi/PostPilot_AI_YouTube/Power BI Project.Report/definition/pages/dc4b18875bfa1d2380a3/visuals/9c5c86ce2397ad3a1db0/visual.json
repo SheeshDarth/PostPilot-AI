@@ -17,78 +17,20 @@
           "projections": [
             {
               "field": {
-                "Arithmetic": {
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "YouTube"
-                        }
-                      },
-                      "Property": "Average Watch Time (Hours)"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
                     }
                   },
-                  "Right": {
-                    "ScopedEval": {
-                      "Expression": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "YouTube"
-                            }
-                          },
-                          "Property": "Average Watch Time (Hours)"
-                        }
-                      },
-                      "Scope": []
-                    }
-                  },
-                  "Operator": 3
+                  "Property": "Average Watch Time (Hours)"
                 }
               },
               "queryRef": "YouTube.Average Watch Time (Hours)",
-              "nativeQueryRef": "%GT Average Watch Time (Hours)"
+              "nativeQueryRef": "Average Watch Time (Hours)"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Arithmetic": {
-                "Left": {
-                  "Measure": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "YouTube"
-                      }
-                    },
-                    "Property": "Average Watch Time (Hours)"
-                  }
-                },
-                "Right": {
-                  "ScopedEval": {
-                    "Expression": {
-                      "Measure": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "YouTube"
-                          }
-                        },
-                        "Property": "Average Watch Time (Hours)"
-                      }
-                    },
-                    "Scope": []
-                  }
-                },
-                "Operator": 3
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -98,7 +40,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
+                  "Value": "8D"
                 }
               }
             },
@@ -106,24 +48,6 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -145,7 +69,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "8D"
                 }
               }
             },
@@ -153,35 +77,6 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#203653'"
-                    }
-                  }
                 }
               }
             }
@@ -203,7 +98,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#152A45'"
+                      "Value": "'#152238'"
                     }
                   }
                 }
