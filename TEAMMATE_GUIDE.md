@@ -1,110 +1,180 @@
 # PostPilot AI — Teammate Guide
 
-This guide is designed for someone who does not want to write code. Follow the steps in order.
+This is the final, beginner-friendly workflow for the YouTube project. The current implementation is called **PostPilot AI** and uses the YouTube dataset, Python/Streamlit, and Power BI.
 
-## What this project does
+## What the project does
 
-PostPilot AI analyzes YouTube videos and predicts whether a future video is likely to be high-performing. It also exports tables for Power BI or Tableau.
+PostPilot AI:
 
-Use the **YouTube pipeline** for the final demo. Do not start with the older Instagram or unified experiments.
+1. cleans and engineers YouTube video analytics data;
+2. describes categories, traffic sources, timing coverage, CTR, watch time, and engagement;
+3. predicts the probability that a video belongs to the historical top-watch-time quartile;
+4. evaluates that prediction with accuracy, precision, recall, F1, ROC-AUC, and a decision threshold;
+5. generates category/source-based hashtag recommendations; and
+6. presents the same analysis in a dynamic Python dashboard and a presentation-ready Power BI report.
 
-## Step 1 — Install Python
+The dataset is academic/simulated. The output is a decision-support demonstration, not a live YouTube virality guarantee.
+
+## 1. Install Python
 
 Install Python 3.11 or newer from <https://www.python.org/downloads/>. During installation, select **Add Python to PATH**.
 
-## Step 2 — Open the project
+## 2. Open the project
 
-Extract this ZIP. Open the extracted `PE3 project` folder.
+Extract this ZIP and open the extracted `PE3 project` folder. In File Explorer, click the address bar, type `powershell`, and press Enter.
 
-In File Explorer, click the address bar, type `powershell`, and press Enter.
+## 3. Install libraries
 
-## Step 3 — Install libraries
-
-Copy and run:
+Run:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-## Step 4 — Run the final YouTube analysis
+## 4. Re-run the Python pipeline
 
-Copy and run:
+Run these commands from the project root:
 
 ```powershell
 python src/youtube_postpilot.py --input data/youtube_analytics/YouTube_Video.csv --output output
 python src/hashtag_generator.py --input data/youtube_analytics/YouTube_Video.csv --output output/youtube_hashtags.csv
 ```
 
-You should see metrics printed in the terminal. The run creates the dashboard files in `output/`.
+Or run the one-click script:
 
-## Step 5 — Check the results
+```powershell
+powershell -ExecutionPolicy Bypass -File .\RUN_PROJECT.ps1
+```
 
-Open these files:
+The pipeline writes:
 
-- `output/youtube_model_metrics.csv` — model metrics
-- `output/youtube_predictions.csv` — main dashboard table
-- `output/youtube_feature_importance.csv` — model feature importance
-- `output/instagram_analysis_media_type.csv`
-- `output/instagram_analysis_content_category.csv`
-- `output/instagram_analysis_post_hour.csv`
-- `output/instagram_analysis_traffic_source.csv`
+- `output/youtube_predictions.csv` — one row per video with prediction probability and prediction flag;
+- `output/youtube_hashtags.csv` — one row per video with recommended hashtags and relevance score;
+- `output/youtube_model_metrics.csv` — held-out evaluation metrics;
+- `output/youtube_feature_importance.csv` — model feature ranking.
 
-The current leakage-safe YouTube chronological benchmark is 73.25% accuracy, 0.772 ROC-AUC, and 0.422 F1. The majority-class accuracy baseline is 74.9%, so report all metrics together. Do not change the result to 85% by adding final likes, comments, shares, impressions, watch time, or subscriber gains as model inputs; those are post-publication outcomes.
+## 5. Verify the current benchmark
 
-## Step 6 — Create the Power BI dashboard
+The current leakage-safe chronological benchmark is:
 
-1. Open Power BI Desktop.
-2. Select **Get data → Text/CSV**.
-3. Select `output/instagram_predictions.csv`.
-4. Click **Load**.
-5. Rename the table to `Instagram` if needed.
-6. Create Page 1 named **Instagram Performance**.
-7. Add cards for total posts, average engagement rate, total reach, average followers, and high-performance posts.
-8. Add bar charts for media type, content category, and traffic source.
-9. Add a line chart using `post_hour` and average `engagement_rate_calculated`.
-10. Add slicers for media type, content category, traffic source, account type, and day of week.
-11. Create Page 2 named **Predictive Strategy**.
-12. Import `output/instagram_feature_importance.csv` as a second table.
-13. Add cards for predicted high-performance posts, average prediction probability, F1, and ROC-AUC.
-14. Add a chart for `High_Performance_Probability` by media type and content category.
-15. Add a table with `post_id`, `media_type`, `content_category`, `post_hour`, `High_Performance_Probability`, and `Predicted_High_Performance`.
-16. Save the file as `dashboard/PostPilot_AI.pbix`.
+| Metric | Value |
+|---|---:|
+| Accuracy | 73.25% |
+| Precision | 46.10% |
+| Recall | 38.84% |
+| F1 | 42.16% |
+| ROC-AUC | 77.16% |
+| Decision threshold | 0.42 |
 
-## Step 7 — Create the report
+The majority-class accuracy baseline is 74.90%, so present all metrics together. Do not add post-publication likes, comments, impressions, watch time, or subscriber gains as model inputs just to inflate accuracy; that would leak the outcome into the prediction.
 
-Use `report/YouTube_PostPilot_Report.md` as the report content. Add screenshots of both Power BI pages and export the final report to PDF.
+## 6. Open the dynamic Python dashboard
 
-## Step 6A — Hashtag recommendations
+Run:
 
-The hashtag file is `output/youtube_hashtags.csv`. Import it into Power BI as `YouTubeHashtags` and connect it to `YouTube` using `post_id`. The current dataset has no title or transcript, so the first run uses category and traffic-source fallback labels. For video-specific hashtags, add `title`, `description`, `transcript`, or `keywords` columns to the input CSV and rerun the generator.
+```powershell
+streamlit run dashboard/app.py
+```
 
-## Step 8 — Demo script
+Open `http://127.0.0.1:8501`.
 
-1. Explain the problem: dashboards usually show what already happened.
-2. Show the dataset fields and cleaning process.
-3. Explain the engagement-rate formula and top-quartile target.
-4. Show the Python metrics and feature importance.
-5. Show Power BI Page 1 for descriptive insights.
-6. Show Power BI Page 2 for prediction probabilities.
-7. Explain that the model predicts probability, not guaranteed virality.
+The dashboard has three tabs:
+
+- **Overview** — KPIs, category and traffic-source comparisons, weekday timing coverage, watch-time comparisons, dynamic metric selection, and duration versus watch-time scatter;
+- **Predictions** — predicted-high videos, probability distribution, actual-versus-predicted comparison, model metrics, feature importance, and highest-probability review table;
+- **Hashtags** — hashtag relevance, hashtag count, generation source, recommendations, and filtered downloads.
+
+Use the sidebar filters to compare categories, traffic sources, performance segments, and minimum probability. Click **Refresh latest pipeline data** after regenerating the CSV outputs.
+
+## 7. Open the Power BI report
+
+Open this canonical PBIP file in Power BI Desktop:
+
+```text
+powerbi\PostPilot_AI_YouTube\Power BI Project.pbip
+```
+
+The Power BI report already contains six pages. Do not manually rebuild them unless Power BI asks to refresh the CSV sources.
+
+### Page 1 — Channel Overview
+
+- Total Videos
+- Average Watch Time
+- Average CTR
+- Total Impressions
+- Subscribers Gained
+- Watch Time by Category
+- CTR by Traffic Source
+- Upload Volume by Weekday
+- Video Duration versus Total Watch Time
+- Content Category, Traffic Source, and Performance Segment slicers
+
+### Page 2 — Complete Analysis Dashboard
+
+This is the presentation page. It combines scale KPIs, category/source comparisons, predicted-high counts, probability, prediction segments, timing coverage, duration/watch-time analysis, and a category decision table.
+
+### Page 3 — Model Evidence & Diagnostics
+
+- Test Accuracy, Test F1, Test ROC-AUC
+- Decision Threshold and Prediction Agreement
+- Predicted High Rate
+- Top Model Features
+- Actual versus Predicted High Videos by Category
+- Average Probability and Predicted High Videos by Traffic Source
+- Metrics table and highest-probability review table
+
+### Page 4 — Prediction and Hashtag Strategy
+
+- Predicted high videos and predicted-high rate
+- Average prediction probability and hashtag relevance
+- Test Accuracy, F1, and ROC-AUC
+- High-performance videos by category
+- Prediction segment distribution
+- Probability by traffic source
+- Recommended hashtags table
+
+### Page 5 — Strategy Deep Dive
+
+Use this page for weekday watch-time, weekday upload coverage, category/source probability, duration/watch-time relationship, and the decision-guide table.
+
+### Page 6 — Hashtag Prediction & Action Plan
+
+This is the explicit hashtag-prediction page. It shows:
+
+- average hashtag relevance;
+- average hashtags per video;
+- hashtag relevance by generation source;
+- hashtags by category;
+- prediction segment distribution;
+- recommended hashtags beside video ID, category, traffic source, probability, prediction flag, relevance, source, and count;
+- slicers for category, traffic source, performance segment, and hashtag source.
+
+The model table name is intentionally spelled `YouTubeHastags` in the PBIP schema. Keep that spelling if Power BI displays it.
+
+## 8. Refreshing Power BI after a new Python run
+
+1. Close Power BI Desktop before changing the CSV files.
+2. Run the two Python commands in Step 4.
+3. Reopen `powerbi\PostPilot_AI_YouTube\Power BI Project.pbip`.
+4. Select **Home → Refresh** if Power BI does not load the new values automatically.
+5. Check that the report opens with all slicers unfiltered. Apply filters only when comparing a specific segment.
+
+## 9. How to present the project
+
+1. Explain the problem: normal dashboards show what already happened; PostPilot AI adds a pre-publication probability estimate.
+2. Show the Python Overview tab for descriptive analysis.
+3. Show Power BI Page 2 for the complete comparison story.
+4. Show Power BI Page 3 to prove the model is evaluated, not just displayed.
+5. Show Power BI Page 6 and the Python Hashtags tab to explain the recommendation layer.
+6. State the limitation clearly: hashtag recommendations are category/source fallbacks because the dataset has no title, description, keyword, or transcript fields.
 
 ## Troubleshooting
 
-If `python` is not recognized, reinstall Python and select **Add Python to PATH**.
+- If `python` is not recognized, reinstall Python and select **Add Python to PATH**.
+- If the dashboard is blank, run `RUN_PROJECT.ps1` and confirm the four YouTube output files exist.
+- If Power BI shows old values, close Power BI, rerun the pipeline, reopen the PBIP, and select **Refresh**.
+- If the report opens filtered to a small number of videos, use **Reset to default** or clear the slicers; the canonical files are saved with no default slicer selections.
 
-If a file is not found, confirm that the PowerShell window is inside the extracted project folder.
+## Important limitation
 
-If Power BI asks whether to load or transform the CSV, choose **Load**.
-
-If a metric is different, rerun the Python command and use the newly generated output files.
-
-## Optional unified experiment
-
-Only run this after the Instagram dashboard is complete:
-
-```powershell
-python src/unify_datasets.py --original data/social_media_engagement.csv --social-2025 data/dataset_2025/synthetic_social_media_engagement.csv --instagram data/instagram_analytics/Instagram_Analytics.csv
-python src/unified_postpilot.py --input output/unified_social_media.csv --output output/unified_model_metrics.json
-```
-
-The unified data is for comparison only because its sources use different engagement denominators.
+The source currently uses one upload hour for every record. The dashboards therefore show weekday coverage instead of implying that one hour is better than another. This is a data-quality limitation, not a missing feature.

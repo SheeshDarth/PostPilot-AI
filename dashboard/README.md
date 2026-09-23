@@ -1,29 +1,48 @@
-# PostPilot AI Power BI / Tableau Dashboard Specification
+# PostPilot AI Dashboard Specification
 
-The final project domain is YouTube video analytics. Use `output/youtube_predictions.csv` as the primary data source and `output/youtube_feature_importance.csv` for the model chart. Rename the imported table to `YouTube`. A click-by-click Power BI guide is available in `dashboard/PowerBI_Setup.md`.
+The final dashboard domain is YouTube video analytics. The Python pipeline and Power BI report use the same generated outputs, so their values can be compared directly.
 
-## YouTube Dashboard
+## Sources
 
-Page 1 should contain cards for total videos, average watch time, average CTR, total impressions, and subscribers gained. Add charts for watch time by content category, CTR by traffic source, average view percentage by video duration, and upload volume by hour.
+- `output/youtube_predictions.csv`
+- `output/youtube_hashtags.csv`
+- `output/youtube_model_metrics.csv`
+- `output/youtube_feature_importance.csv`
 
-Page 2 should contain predicted high-performance videos, average prediction probability, F1, ROC-AUC, prediction probability by category/source, performance segments, feature importance, and a detail table with video ID, category, traffic source, duration, probability, and predicted class.
+The semantic-model table names are `YouTube`, `YouTubeHastags`, and `FeatureImportance`. Keep the spelling `YouTubeHastags` because it is already part of the PBIP model.
 
-## Page 1 — Instagram Performance
+## Canonical Power BI report
 
-KPI cards: total posts, average calculated engagement rate, total reach, average follower count, and high-performance posts.
+Open:
 
-Charts: average engagement rate by media type, content category, traffic source, posting hour, and account type. Add slicers for media type, category, traffic source, account type, CTA, and day of week.
-
-## Page 2 — Predictive Strategy
-
-KPI cards: predicted high-performance posts, average prediction probability, high-intent posts, F1, and ROC-AUC. Add probability by media type/category, performance segment distribution, feature importance, and a detail table with post ID, media type, category, hour, probability, and predicted class.
-
-## Core measures
-
-```DAX
-Total Posts = COUNTROWS(Instagram)
-Average Engagement Rate = AVERAGE(Instagram[engagement_rate_calculated])
-High Performance Posts = CALCULATE(COUNTROWS(Instagram), Instagram[High_Performance] = 1)
-Predicted High Posts = CALCULATE(COUNTROWS(Instagram), Instagram[Predicted_High_Performance] = 1)
-Average Prediction Probability = AVERAGE(Instagram[High_Performance_Probability])
+```text
+powerbi\PostPilot_AI_YouTube\Power BI Project.pbip
 ```
+
+The report contains:
+
+1. `Channel Overview` — KPI cards, watch time by category, CTR by traffic source, weekday upload coverage, duration/watch-time scatter, and slicers.
+2. `Complete Analysis Dashboard` — presentation-ready comparison page.
+3. `Model Evidence & Diagnostics` — test metrics, feature importance, actual-versus-predicted labels, probability/source comparisons, and review tables.
+4. `Prediction and Hashtag Strategy` — prediction metrics, performance segments, probabilities, and hashtag table.
+5. `Strategy Deep Dive` — timing, duration, category, source, and decision-guide comparisons.
+6. `Hashtag Prediction & Action Plan` — explicit hashtag relevance, hashtag counts, source comparison, recommendations, and filters.
+
+## Python dashboard
+
+Run from the project root:
+
+```powershell
+streamlit run dashboard/app.py
+```
+
+Open `http://127.0.0.1:8501`. The three tabs are `Overview`, `Predictions`, and `Hashtags`. The sidebar filters dynamically update all cards, charts, tables, and downloads.
+
+## Reproduction
+
+```powershell
+python src/youtube_postpilot.py --input data/youtube_analytics/YouTube_Video.csv --output output
+python src/hashtag_generator.py --input data/youtube_analytics/YouTube_Video.csv --output output/youtube_hashtags.csv
+```
+
+For exact visual bindings and page layout, read `dashboard/PowerBI_Setup.md`. For interpretation rules, read `CHART_GUIDE.md` and `report/YouTube_PostPilot_Report.md`.

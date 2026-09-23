@@ -8,8 +8,10 @@ Power BI Desktop is the dashboard layer for this project. The Python pipeline al
 2. Open Power BI Desktop.
 3. Select **Get data → Text/CSV** and choose `output/youtube_predictions.csv`.
 4. Repeat **Get data → Text/CSV** for `output/youtube_hashtags.csv`.
-5. Select **Load** and rename the tables to `YouTube` and `YouTubeHashtags`.
-5. In **Modeling**, set `upload_date` to Date/Time and probability/percentage fields to decimal number.
+5. Select **Load** and rename the tables to `YouTube` and `YouTubeHastags`.
+6. In **Modeling**, set `upload_date` to Date/Time and probability/percentage fields to decimal number.
+
+The canonical PBIP report is already built at `powerbi/PostPilot_AI_YouTube/Power BI Project.pbip`. Open that file after the pipeline run; use the manual bindings below only to understand or repair a visual.
 
 ## Page 1 — Channel performance
 

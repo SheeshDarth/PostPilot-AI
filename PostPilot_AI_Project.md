@@ -6,6 +6,8 @@
 **Primary Model:** Random Forest Classifier  
 **Project Type:** Social Media Analytics + Predictive Modeling + BI Dashboard
 
+> **Current implementation decision:** the final working demo uses the YouTube dataset. Use `README.md`, `TEAMMATE_GUIDE.md`, and `report/YouTube_PostPilot_Report.md` as the canonical implementation documents. The older Instagram/unified sections in this planning document are retained as project history and alternatives.
+
 ---
 
 # 1. Project Summary
