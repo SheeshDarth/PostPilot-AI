@@ -192,6 +192,8 @@ The report contains:
 1. `Channel Overview`: KPIs, category watch-time comparison, traffic-source CTR, upload-hour activity, duration/watch-time scatter, and slicers.
 2. `Prediction and Hashtag Strategy`: prediction KPIs, predicted high-performance comparison, segment distribution, probability comparisons, hashtag table, and slicers.
 3. `Python Comparison & Recommendations`: model metrics, category comparison, highest-probability videos, hashtag recommendations, feature-oriented comparison, and slicers.
+4. `Complete Analysis Dashboard`: one-page presentation view combining the main KPIs, category comparison, traffic-source comparison, timing, prediction segments, probability, scatter analysis, and decision table.
+5. `Hashtag Prediction & Action Plan`: explicitly shows predicted high-performance rate, prediction confidence, hashtag relevance, hashtag counts, generation source, slicers, and the recommended hashtag table.
 
 Use slicers to compare categories, traffic sources, performance segments, and hashtag-generation sources. Tables are included because they expose the exact values behind the charts and make the dashboard easier to explain during a presentation.
 
