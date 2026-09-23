@@ -23,11 +23,11 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "upload_hour"
+                  "Property": "upload_weekday"
                 }
               },
-              "queryRef": "YouTube.upload_hour",
-              "nativeQueryRef": "upload_hour",
+              "queryRef": "YouTube.upload_weekday",
+              "nativeQueryRef": "upload_weekday",
               "active": true
             }
           ]
@@ -49,24 +49,6 @@
               "nativeQueryRef": "Total Videos"
             }
           ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "Average CTR"
-                }
-              },
-              "queryRef": "YouTube.Average CTR",
-              "nativeQueryRef": "Average CTR"
-            }
-          ]
         }
       },
       "sortDefinition": {
@@ -79,7 +61,7 @@
                     "Entity": "YouTube"
                   }
                 },
-                "Property": "upload_hour"
+                "Property": "upload_weekday"
               }
             },
             "direction": "Ascending"
@@ -96,7 +78,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Upload Activity by Hour'"
+                  "Value": "'Upload Volume by Weekday'"
                 }
               }
             },
@@ -129,6 +111,13 @@
                       "Value": "'#F4F7FB'"
                     }
                   }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -379,7 +368,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a593a0027937966e5d1c",
+        "name": "e5750b0d18aa35f8b483",
         "field": {
           "Column": {
             "Expression": {
@@ -387,13 +376,13 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "upload_hour"
+            "Property": "upload_weekday"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "8db20a75cafe6240dc9e",
+        "name": "acfc24f01330726bd8e2",
         "field": {
           "Measure": {
             "Expression": {
@@ -402,20 +391,6 @@
               }
             },
             "Property": "Total Videos"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d534faf4be7b2a213cf6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "YouTube"
-              }
-            },
-            "Property": "Average CTR"
           }
         },
         "type": "Categorical"

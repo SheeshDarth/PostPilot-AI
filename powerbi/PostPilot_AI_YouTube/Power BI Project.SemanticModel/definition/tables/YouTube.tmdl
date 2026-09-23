@@ -78,6 +78,14 @@ table YouTube
 	measure 'Decision Threshold' = 0.42
 		lineageTag: ef20ac84-eeeb-41d4-865a-3c00372f4866
 
+	measure 'Actual High Videos' = SUM(YouTube[High_Performance])
+		lineageTag: 2f6b7db7-7d0f-4d5a-a62c-6f7aa2e0c7d9
+		formatString: 0
+
+	measure 'Prediction Agreement' = AVERAGEX(YouTube, IF(YouTube[High_Performance] = YouTube[Predicted_High_Performance], 1, 0))
+		lineageTag: 61cf0ac8-0d21-4e14-8d5b-4a0ed8d4e1c2
+		formatString: 0.0%
+
 	column post_id
 		dataType: string
 		isHidden
@@ -302,8 +310,6 @@ table YouTube
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"post_id", type text}, {"upload_date", type datetime}, {"video_duration_min", type number}, {"avg_view_duration_sec", Int64.Type}, {"avg_view_percentage", type number}, {"subscribers_gained", Int64.Type}, {"traffic_source", type text}, {"ctr_percentage", type number}, {"impressions", Int64.Type}, {"likes", Int64.Type}, {"comments", Int64.Type}, {"shares", Int64.Type}, {"total_watch_time_hours", type number}, {"content_category", type text}, {"upload_hour", Int64.Type}, {"upload_month", Int64.Type}, {"upload_dayofmonth", Int64.Type}, {"upload_weekofyear", Int64.Type}, {"upload_weekday", type text}, {"High_Performance", Int64.Type}, {"Predicted_High_Performance", Int64.Type}, {"High_Performance_Probability", type number}, {"Performance_Segment", type text}})
 				in
 				    #"Changed Type"
-
-	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

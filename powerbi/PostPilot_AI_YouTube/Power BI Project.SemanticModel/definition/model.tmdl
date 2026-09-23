@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["YouTube","YouTubeHastags"]
+annotation PBI_QueryOrder = ["YouTube","YouTubeHastags","FeatureImportance"]
 
 annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
 
@@ -16,6 +16,7 @@ ref table YouTube
 ref table DateTableTemplate_927592c6-287e-4078-be02-8c190bc7be4f
 ref table LocalDateTable_c83a8cc3-e543-4e19-ba16-e114cc67354f
 ref table YouTubeHastags
+ref table FeatureImportance
 
 ref cultureInfo en-US
 

@@ -13,49 +13,21 @@
     "visualType": "scatterChart",
     "query": {
       "queryState": {
-        "X": {
+        "Details": {
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Column": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "YouTube"
-                        }
-                      },
-                      "Property": "video_duration_min"
+                    "SourceRef": {
+                      "Entity": "YouTube"
                     }
                   },
-                  "Function": 1
+                  "Property": "post_id"
                 }
               },
-              "queryRef": "Avg(YouTube.video_duration_min)",
-              "nativeQueryRef": "Avg of video_duration_min"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "YouTube"
-                        }
-                      },
-                      "Property": "total_watch_time_hours"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(YouTube.total_watch_time_hours)",
-              "nativeQueryRef": "Avg of total_watch_time_hours"
+              "queryRef": "YouTube.post_id",
+              "nativeQueryRef": "post_id"
             }
           ]
         },
@@ -74,24 +46,6 @@
               },
               "queryRef": "YouTube.content_category",
               "nativeQueryRef": "content_category"
-            }
-          ]
-        },
-        "Details": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "post_id"
-                }
-              },
-              "queryRef": "YouTube.post_id",
-              "nativeQueryRef": "post_id"
             }
           ]
         },
@@ -115,6 +69,53 @@
               },
               "queryRef": "Avg(YouTube.High_Performance_Probability)",
               "nativeQueryRef": "Avg of High_Performance_Probability"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "YouTube"
+                        }
+                      },
+                      "Property": "video_duration_min"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(YouTube.video_duration_min)",
+              "nativeQueryRef": "Avg of video_duration_min",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "YouTube"
+                        }
+                      },
+                      "Property": "total_watch_time_hours"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(YouTube.total_watch_time_hours)",
+              "nativeQueryRef": "Avg of total_watch_time_hours"
             }
           ]
         }
@@ -252,30 +253,6 @@
                       "Value": "'#F4F7FB'"
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F4F7FB'"
-                    }
-                  }
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }

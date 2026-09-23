@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "a222a2018dc772ec9b20",
+  "name": "86252c582536801c39b2",
   "position": {
-    "x": 735,
-    "y": 55,
+    "x": 630,
+    "y": 57,
     "z": 5000,
-    "height": 65,
-    "width": 235,
+    "height": 60,
+    "width": 200,
     "tabOrder": 5000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "Average Prediction Probability"
+                  "Property": "Decision Threshold"
                 }
               },
-              "queryRef": "YouTube.Average Prediction Probability",
-              "nativeQueryRef": "Average Prediction Probability"
+              "queryRef": "YouTube.Decision Threshold",
+              "nativeQueryRef": "Decision Threshold"
             }
           ]
         }
@@ -41,7 +41,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Prediction Probability'"
+                  "Value": "'Decision Threshold'"
                 }
               }
             },
@@ -190,7 +190,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "22D"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "10D"
                 }
               }
             },
@@ -279,13 +279,30 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8B7CFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "ffdccbd6945ec34a4b55",
+        "name": "dde1b3a9d5a61dc5feaa",
         "field": {
           "Measure": {
             "Expression": {
@@ -293,7 +310,7 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "Average Prediction Probability"
+            "Property": "Decision Threshold"
           }
         },
         "type": "Categorical"

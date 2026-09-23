@@ -1,19 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "bfd9ad837f3c197d1056",
+  "name": "bfdbabeb7c2d031c9c52",
   "position": {
-    "x": 975,
-    "y": 55,
-    "z": 6000,
-    "height": 65,
-    "width": 290,
-    "tabOrder": 6000
+    "x": 430,
+    "y": 384,
+    "z": 12000,
+    "height": 180,
+    "width": 410,
+    "tabOrder": 12000
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "barChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "traffic_source"
+                }
+              },
+              "queryRef": "YouTube.traffic_source",
+              "nativeQueryRef": "traffic_source",
+              "active": true
+            }
+          ]
+        },
+        "X": {
           "projections": [
             {
               "field": {
@@ -23,14 +42,32 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "Total Videos"
+                  "Property": "Predicted High Videos"
                 }
               },
-              "queryRef": "YouTube.Total Videos",
-              "nativeQueryRef": "Total Videos"
+              "queryRef": "YouTube.Predicted High Videos",
+              "nativeQueryRef": "Predicted High Videos"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "YouTube"
+                  }
+                },
+                "Property": "traffic_source"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true,
@@ -41,7 +78,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Videos'"
+                  "Value": "'Predicted High Videos by Traffic Source'"
                 }
               }
             },
@@ -150,7 +187,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -158,6 +195,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8B3C7'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F7FB'"
+                    }
+                  }
                 }
               }
             }
@@ -170,7 +229,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -178,6 +237,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8B3C7'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F7FB'"
+                    }
+                  }
                 }
               }
             }
@@ -190,7 +271,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "9D"
                 }
               }
             },
@@ -212,7 +293,7 @@
                 }
               }
             },
-            "bold": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -228,7 +309,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -238,35 +319,15 @@
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "categoryLabels": [
-        {
-          "properties": {
-            "color": {
+            },
+            "labelColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#A8B3C7'"
+                      "Value": "'#F4F7FB'"
                     }
                   }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             },
@@ -279,13 +340,44 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#39D98A'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "9cd116ff018a2d1a9615",
+        "name": "726fdbdedb4a8707949d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "traffic_source"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d135dc8f329d322e2892",
         "field": {
           "Measure": {
             "Expression": {
@@ -293,7 +385,7 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "Total Videos"
+            "Property": "Predicted High Videos"
           }
         },
         "type": "Categorical"

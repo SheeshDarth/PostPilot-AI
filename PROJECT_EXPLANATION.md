@@ -154,7 +154,7 @@ The dashboard has three tabs:
 - KPI cards for filtered videos, watch time, CTR, impressions, and subscribers
 - Watch time by category
 - CTR by traffic source
-- Upload volume by hour
+- Upload volume by weekday
 - Watch time by weekday
 - Predicted high-performance rate by traffic source
 - Duration versus total watch time scatter plot
@@ -189,11 +189,14 @@ Open `powerbi/PostPilot_AI_YouTube/Power BI Project.pbip`.
 
 The report contains:
 
-1. `Channel Overview`: KPIs, category watch-time comparison, traffic-source CTR, upload-hour activity, duration/watch-time scatter, and slicers.
-2. `Prediction and Hashtag Strategy`: prediction KPIs, predicted high-performance comparison, segment distribution, probability comparisons, hashtag table, and slicers.
-3. `Python Comparison & Recommendations`: model metrics, category comparison, highest-probability videos, hashtag recommendations, feature-oriented comparison, and slicers.
-4. `Complete Analysis Dashboard`: one-page presentation view combining the main KPIs, category comparison, traffic-source comparison, timing, prediction segments, probability, scatter analysis, and decision table.
-5. `Hashtag Prediction & Action Plan`: explicitly shows predicted high-performance rate, prediction confidence, hashtag relevance, hashtag counts, generation source, slicers, and the recommended hashtag table.
+1. `Channel Overview`: KPIs, category watch-time comparison, traffic-source CTR, weekday upload coverage, duration/watch-time scatter, and slicers.
+2. `Complete Analysis Dashboard`: one-page presentation view combining the main KPIs, category comparison, traffic-source comparison, timing, prediction segments, probability, scatter analysis, and decision table.
+3. `Model Evidence & Diagnostics`: test metrics, decision threshold, prediction agreement, feature importance, actual-versus-predicted category comparison, traffic-source comparisons, and review table.
+4. `Prediction and Hashtag Strategy`: prediction KPIs, predicted high-performance comparison, segment distribution, probability comparisons, hashtag table, and slicers.
+5. `Strategy Deep Dive`: weekday watch-time, weekday upload coverage, category/source probability, duration/watch-time, and decision-guide visuals.
+6. `Hashtag Prediction & Action Plan`: explicitly shows predicted high-performance rate, prediction confidence, hashtag relevance, hashtag counts, generation source, slicers, and the recommended hashtag table.
+
+The semantic model also contains a `FeatureImportance` table and two evidence measures, `Actual High Videos` and `Prediction Agreement`, so the report can compare what happened historically with what the classifier predicted.
 
 Use slicers to compare categories, traffic sources, performance segments, and hashtag-generation sources. Tables are included because they expose the exact values behind the charts and make the dashboard easier to explain during a presentation.
 

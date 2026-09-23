@@ -124,10 +124,15 @@ with overview:
         source_chart = filtered.groupby("traffic_source")["ctr_percentage"].mean().sort_values(ascending=False)
         st.bar_chart(source_chart, color="#ffbf69")
 
-    st.write("### Upload volume by hour")
-    st.caption("Counts videos by upload hour; use this to inspect timing coverage in the dataset.")
-    hourly = filtered.groupby("upload_hour").size().reindex(range(24), fill_value=0)
-    st.line_chart(hourly, color="#7c9cff")
+    st.write("### Upload volume by weekday")
+    unique_hours = filtered["upload_hour"].nunique(dropna=True)
+    if unique_hours <= 1:
+        st.caption("The source contains one upload hour only, so weekday coverage is the more informative timing comparison.")
+    else:
+        st.caption("Counts videos by weekday; use this to compare the dataset's timing coverage without overstating causality.")
+    weekday_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    weekday_volume = filtered.groupby("upload_weekday").size().reindex(weekday_order, fill_value=0)
+    st.bar_chart(weekday_volume.rename("Videos"), color="#7c9cff")
 
     left, right = st.columns(2)
     with left:
@@ -204,6 +209,19 @@ with predictions_tab:
         st.caption("Groups videos into low-, medium-, and high-intent probability bands.")
         segment_counts = filtered["Performance_Segment"].value_counts()
         st.bar_chart(segment_counts, color="#ff7a9e")
+
+    st.write("### Actual versus predicted high-performance videos by category")
+    st.caption("Compares the historical top-quartile label with the model's high-performance flag; the gap shows classification error.")
+    actual_predicted = (
+        filtered.groupby("content_category")[["High_Performance", "Predicted_High_Performance"]]
+        .sum()
+        .rename(columns={
+            "High_Performance": "Actual high videos",
+            "Predicted_High_Performance": "Predicted high videos",
+        })
+        .sort_values("Actual high videos", ascending=False)
+    )
+    st.bar_chart(actual_predicted, color=["#f7b955", "#18c5c9"], height=320)
 
     left, right = st.columns(2)
     with left:

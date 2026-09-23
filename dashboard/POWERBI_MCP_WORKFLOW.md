@@ -63,7 +63,7 @@ Inspect the connected PBIR report and semantic model. Do not modify anything yet
 After the inspection succeeds, use:
 
 ```text
-Create the complete PostPilot AI YouTube dashboard. Create two pages named Channel Overview and Prediction and Hashtag Strategy. Use the exact semantic model tables YouTube and YouTubeHastags and the existing measures. Add KPI cards, category/watch-time chart, traffic-source/CTR chart, upload-hour chart, duration/watch-time scatter chart, prediction segment donut, probability-by-source chart, hashtag table, slicers, titles, spacing, and a dark navy/teal theme. Validate bindings and layout before saving.
+Create the complete PostPilot AI YouTube dashboard. Use the exact semantic model tables YouTube, YouTubeHastags, and FeatureImportance and the existing measures. Add KPI cards, category/watch-time chart, traffic-source/CTR chart, weekday upload-coverage chart, duration/watch-time scatter chart, prediction segment donut, probability-by-source chart, actual-versus-predicted comparison, feature-importance chart, hashtag table, slicers, titles, spacing, and a dark navy/teal theme. Validate bindings and layout before saving. The source has one upload hour only, so do not present an hourly timing recommendation.
 ```
 
 The local Streamlit dashboard remains available at `http://127.0.0.1:8501` as a fully automated alternative.

@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "a0692e88bc47334818ed",
+  "name": "e3efed87b708d212bd08",
   "position": {
-    "x": 255,
-    "y": 55,
-    "z": 3000,
-    "height": 65,
-    "width": 235,
-    "tabOrder": 3000
+    "x": 845,
+    "y": 384,
+    "z": 13000,
+    "height": 180,
+    "width": 420,
+    "tabOrder": 13000
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
         "Values": {
@@ -20,14 +20,70 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "YouTubeHastags"
+                      "Entity": "YouTube"
                     }
                   },
-                  "Property": "Average Hashtags per Video"
+                  "Property": "Test Accuracy"
                 }
               },
-              "queryRef": "YouTubeHastags.Average Hashtags per Video",
-              "nativeQueryRef": "Average Hashtags per Video"
+              "queryRef": "YouTube.Test Accuracy",
+              "nativeQueryRef": "Test Accuracy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Test F1"
+                }
+              },
+              "queryRef": "YouTube.Test F1",
+              "nativeQueryRef": "Test F1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Test ROC AUC"
+                }
+              },
+              "queryRef": "YouTube.Test ROC AUC",
+              "nativeQueryRef": "Test ROC AUC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Decision Threshold"
+                }
+              },
+              "queryRef": "YouTube.Decision Threshold",
+              "nativeQueryRef": "Decision Threshold"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Prediction Agreement"
+                }
+              },
+              "queryRef": "YouTube.Prediction Agreement",
+              "nativeQueryRef": "Prediction Agreement"
             }
           ]
         }
@@ -41,7 +97,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Hashtags per Video'"
+                  "Value": "'Model Threshold and Metrics'"
                 }
               }
             },
@@ -190,7 +246,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "8D"
                 }
               }
             },
@@ -198,24 +254,6 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -242,15 +280,48 @@
           }
         }
       ],
-      "categoryLabels": [
+      "values": [
         {
           "properties": {
-            "color": {
+            "fontColorPrimary": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#A8B3C7'"
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D8E5F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#152238'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1C2C44'"
                     }
                   }
                 }
@@ -259,21 +330,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "10D"
                 }
               }
             }
@@ -285,15 +342,71 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "97ec8b8e84bbca8e5d61",
+        "name": "318b2c97cc13610d437b",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "YouTubeHastags"
+                "Entity": "YouTube"
               }
             },
-            "Property": "Average Hashtags per Video"
+            "Property": "Test Accuracy"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c69c3b526033d2d10f0e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Test F1"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8470fc11170c4e43fd12",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Test ROC AUC"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b7059ad6b46b96544ba0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Decision Threshold"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "47f77de411e531f75155",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "YouTube"
+              }
+            },
+            "Property": "Prediction Agreement"
           }
         },
         "type": "Categorical"

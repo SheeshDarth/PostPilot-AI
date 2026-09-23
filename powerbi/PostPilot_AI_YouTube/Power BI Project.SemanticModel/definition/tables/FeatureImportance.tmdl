@@ -1,0 +1,31 @@
+table FeatureImportance
+	lineageTag: 0b2e0e77-45b1-4f75-9f7a-2b5bbebd8fb5
+
+	column Feature
+		dataType: string
+		lineageTag: 7b1b6c5b-2b3e-4d32-bfaf-1f2a5cf4f6d1
+		summarizeBy: none
+		sourceColumn: Feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column Importance
+		dataType: double
+		lineageTag: 4f41f6a4-5b8a-4f0e-bf11-7f4a8b2d8c12
+		summarizeBy: sum
+		sourceColumn: Importance
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FeatureImportance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\\Users\\Siddharth\\Desktop\\PE3 project\\output\\youtube_feature_importance.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Feature", type text}, {"Importance", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

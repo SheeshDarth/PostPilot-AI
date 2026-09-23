@@ -1,34 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "6e2ddacb8ec7d9686d90",
+  "name": "65119693c4973fd74484",
   "position": {
     "x": 640,
-    "y": 180,
-    "z": 12000,
+    "y": 159,
+    "z": 10000,
     "height": 220,
     "width": 625,
-    "tabOrder": 12000
+    "tabOrder": 10000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Category": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "post_id"
-                }
-              },
-              "queryRef": "YouTube.post_id",
-              "nativeQueryRef": "post_id"
-            },
             {
               "field": {
                 "Column": {
@@ -41,66 +27,61 @@
                 }
               },
               "queryRef": "YouTube.content_category",
-              "nativeQueryRef": "content_category"
-            },
+              "nativeQueryRef": "content_category",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "traffic_source"
+                  "Property": "Actual High Videos"
                 }
               },
-              "queryRef": "YouTube.traffic_source",
-              "nativeQueryRef": "traffic_source"
+              "queryRef": "YouTube.Actual High Videos",
+              "nativeQueryRef": "Actual High Videos"
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "video_duration_min"
+                  "Property": "Predicted High Videos"
                 }
               },
-              "queryRef": "YouTube.video_duration_min",
-              "nativeQueryRef": "video_duration_min"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "High_Performance_Probability"
-                }
-              },
-              "queryRef": "YouTube.High_Performance_Probability",
-              "nativeQueryRef": "High_Performance_Probability"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "Predicted_High_Performance"
-                }
-              },
-              "queryRef": "YouTube.Predicted_High_Performance",
-              "nativeQueryRef": "Predicted_High_Performance"
+              "queryRef": "YouTube.Predicted High Videos",
+              "nativeQueryRef": "Predicted High Videos"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "YouTube"
+                  }
+                },
+                "Property": "content_category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true,
@@ -111,7 +92,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Highest-Probability Videos'"
+                  "Value": "'Actual versus Predicted High Videos by Category'"
                 }
               }
             },
@@ -220,7 +201,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -228,6 +209,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8B3C7'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F7FB'"
+                    }
+                  }
                 }
               }
             }
@@ -240,7 +243,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -248,6 +251,28 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8B3C7'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F7FB'"
+                    }
+                  }
                 }
               }
             }
@@ -260,7 +285,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -268,6 +293,24 @@
               "expr": {
                 "Literal": {
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -280,7 +323,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "9D"
                 }
               }
             },
@@ -290,61 +333,39 @@
                   "Value": "''Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F7FB'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
       ],
-      "values": [
+      "dataPoint": [
         {
           "properties": {
-            "fontColorPrimary": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#F7B955'"
                     }
                   }
-                }
-              }
-            },
-            "fontColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#D8E5F2'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorPrimary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#152238'"
-                    }
-                  }
-                }
-              }
-            },
-            "backColorSecondary": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C2C44'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
                 }
               }
             }
@@ -352,66 +373,17 @@
         },
         {
           "properties": {
-            "backColor": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
-                    "FillRule": {
-                      "Input": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "YouTube"
-                                }
-                              },
-                              "Property": "High_Performance_Probability"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "FillRule": {
-                        "linearGradient2": {
-                          "min": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#7F1D1D'"
-                              }
-                            }
-                          },
-                          "max": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#22C55E'"
-                              }
-                            }
-                          },
-                          "nullColoringStrategy": {
-                            "strategy": {
-                              "Literal": {
-                                "Value": "'asZero'"
-                              }
-                            }
-                          }
-                        }
-                      }
+                    "Literal": {
+                      "Value": "'#18C5C9'"
                     }
                   }
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Sum(YouTube.High_Performance_Probability)"
           }
         }
       ]
@@ -420,21 +392,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "0d4ff2bb4c88de387f79",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "YouTube"
-              }
-            },
-            "Property": "post_id"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d73ad26ef54ad8b24e70",
+        "name": "40d3b9406ef152dc04ad",
         "field": {
           "Column": {
             "Expression": {
@@ -448,57 +406,29 @@
         "type": "Categorical"
       },
       {
-        "name": "91b1e00f99e885311bf2",
+        "name": "5512bf7b2c6510073bd6",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
                 "Entity": "YouTube"
               }
             },
-            "Property": "traffic_source"
+            "Property": "Actual High Videos"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "1c388351cb50522ae7fe",
+        "name": "6a361be826d5f18bb0e5",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
                 "Entity": "YouTube"
               }
             },
-            "Property": "video_duration_min"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9d34303839095473e6ea",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "YouTube"
-              }
-            },
-            "Property": "High_Performance_Probability"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "84c6e088a065675ceb5e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "YouTube"
-              }
-            },
-            "Property": "Predicted_High_Performance"
+            "Property": "Predicted High Videos"
           }
         },
         "type": "Categorical"

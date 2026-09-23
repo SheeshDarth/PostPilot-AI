@@ -23,11 +23,11 @@
                       "Entity": "YouTube"
                     }
                   },
-                  "Property": "upload_hour"
+                  "Property": "upload_weekday"
                 }
               },
-              "queryRef": "YouTube.upload_hour",
-              "nativeQueryRef": "upload_hour",
+              "queryRef": "YouTube.upload_weekday",
+              "nativeQueryRef": "upload_weekday",
               "active": true
             }
           ]
@@ -61,7 +61,7 @@
                     "Entity": "YouTube"
                   }
                 },
-                "Property": "upload_hour"
+                "Property": "upload_weekday"
               }
             },
             "direction": "Ascending"
@@ -78,7 +78,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Upload Volume by Hour'"
+                  "Value": "'Upload Volume by Weekday'"
                 }
               }
             },
@@ -111,6 +111,13 @@
                       "Value": "'#FFFFFF'"
                     }
                   }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -328,7 +335,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "2a91e8c29ebc3d272395",
+        "name": "e59e122befe2695d19e3",
         "field": {
           "Column": {
             "Expression": {
@@ -336,13 +343,13 @@
                 "Entity": "YouTube"
               }
             },
-            "Property": "upload_hour"
+            "Property": "upload_weekday"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "5de6ddef778180b528f7",
+        "name": "c16ae79a8d3b995cdb96",
         "field": {
           "Measure": {
             "Expression": {

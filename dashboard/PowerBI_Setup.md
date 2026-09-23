@@ -27,12 +27,12 @@ Exact field bindings used by the PBIP report:
 |---|---|---|---|
 | Watch Time by Category | `YouTube[content_category]` | `[Average Watch Time (Hours)]` | `[Average CTR]` |
 | CTR by Traffic Source | `YouTube[traffic_source]` | `[Average CTR]` | `[Average Watch Time (Hours)]` |
-| Upload Activity by Hour | `YouTube[upload_hour]` | `[Total Videos]` | `[Average CTR]` |
+| Upload Volume by Weekday | `YouTube[upload_weekday]` | `[Total Videos]` | `[Average CTR]` |
 | Video Duration vs Watch Time | `AVG(YouTube[video_duration_min])` | `AVG(YouTube[total_watch_time_hours])` | Legend: `content_category`; Details: `post_id` |
 
 For the horizontal bar chart, `traffic_source` is the Category/Y-axis and `[Average CTR]` is the X-axis/Values field.
 
-Suggested arrangement: place the five KPI cards across the top, the category and traffic-source charts in the middle, and the upload-hour chart across the bottom. Use `dashboard/PostPilot_AI_Measures.dax` as the copy source for all measures.
+Suggested arrangement: place the five KPI cards across the top, the category and traffic-source charts in the middle, and the weekday-coverage chart across the bottom. The source currently contains one upload hour only, so weekday coverage is the more informative timing visual. Use `dashboard/PostPilot_AI_Measures.dax` as the copy source for all measures.
 
 ## Page 2 — Prediction strategy
 
@@ -52,15 +52,47 @@ Add a hashtag table using `YouTubeHastags[post_id]`, `recommended_hashtags`, `ha
 
 Suggested arrangement: place prediction KPI cards across the top, slicers down the left, the hashtag table on the right, and probability/category charts along the bottom.
 
-## Page 3 — Python comparison and recommendations
+## Page 3 — Model Evidence and Recommendations
 
-This page mirrors the Python dashboard's comparison views. It contains:
+This page mirrors the Python dashboard's diagnostic views and the reference report's model-evidence page. It contains:
 
-- KPI cards for predicted high rate, average hashtags per video, average hashtag relevance, average prediction probability, and total videos.
+- KPI cards for test accuracy, test F1, test ROC-AUC, decision threshold, prediction agreement, and predicted high rate.
+- A feature-importance bar chart using the Power BI table `FeatureImportance[Feature]` and `FeatureImportance[Importance]`.
+- An actual-versus-predicted comparison chart using `YouTube[content_category]`, `YouTube[Actual High Videos]`, and `YouTube[Predicted High Videos]`.
+- A probability comparison by traffic source.
 - Slicers for content category, traffic source, performance segment, and hashtag generation source.
-- A **Category Comparison** table with content category, video count, average watch time, average CTR, average prediction probability, and predicted high videos.
 - A **Highest-Probability Videos** table with post ID, category, traffic source, duration, probability, and prediction flag.
-- A **Hashtag Quality and Recommendations** table with recommended hashtags, relevance score, hashtag count, and generation source.
+
+Use the actual-versus-predicted chart to explain model error. Do not describe a higher bar as causal improvement.
+
+## Page 4 — Strategy Deep Dive
+
+Use this page for the decisions that are useful but too detailed for the executive page:
+
+- average watch time by weekday
+- upload volume by weekday
+- predicted high videos by category
+- average probability by traffic source
+- duration versus watch time scatter
+- category/source decision table
+
+## Page 5 — Complete Analysis Dashboard
+
+Use this page for the presentation-ready one-page story: five KPI cards, category watch time, source CTR, predicted-high count by category, upload activity, prediction segments, source probability, scatter analysis, and the category decision table.
+
+## Page 6 — Hashtag Prediction and Action Plan
+
+Use this page to show hashtag prediction explicitly. It contains:
+
+- predicted-high rate
+- average hashtag relevance
+- average hashtags per video
+- average prediction probability
+- hashtag relevance by generation source
+- average hashtags by category
+- prediction segment distribution
+- recommended hashtags table with post ID, category, traffic source, probability, prediction flag, recommended hashtags, relevance, source, and count
+- slicers for category, traffic source, performance segment, and hashtag source
 
 The comparison columns use conditional color gradients: teal/gold for watch time, teal for CTR, blue/purple for prediction probability, red/green for high-performance probability, and slate/teal for hashtag relevance. Higher values are visually stronger, making category and video comparisons easy to infer.
 
@@ -78,6 +110,8 @@ Test Accuracy = 0.7325
 Test F1 = 0.4216
 Test ROC AUC = 0.7716
 Decision Threshold = 0.42
+Actual High Videos = SUM(YouTube[High_Performance])
+Prediction Agreement = AVERAGEX(YouTube, IF(YouTube[High_Performance] = YouTube[Predicted_High_Performance], 1, 0))
 ```
 
 Add slicers for content category, traffic source, upload weekday, upload month, and performance segment. Use the slicers to demonstrate interactive filtering during the presentation.

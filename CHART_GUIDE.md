@@ -2,13 +2,13 @@
 
 Use this guide when presenting the dashboards. Every visual should answer a specific question.
 
-The Power BI page `Complete Analysis Dashboard` is the main presentation page. It combines the KPI cards, category and traffic-source comparisons, upload timing, prediction segments, probability comparisons, duration/watch-time relationship, and category decision table in one view.
+The Power BI page `Complete Analysis Dashboard` is the main presentation page. The report also contains separate model-evidence and hashtag-action pages so that executive comparisons, diagnostics, and recommendations are not mixed into one overcrowded canvas.
 
 | Visual | Question it answers | How to read it |
 |---|---|---|
 | Watch time by category | Which content categories generate more watch time? | Higher bars indicate higher average total watch time. |
 | CTR by traffic source | Where do viewers click more often? | Higher bars indicate stronger average CTR for that discovery source. |
-| Upload volume by hour | When were the videos uploaded? | Peaks show the hours represented most often in the dataset. |
+| Upload volume by weekday | How is the dataset distributed across publishing weekdays? | Compare weekday coverage; because the source has one upload hour, this is safer than presenting a false hourly timing recommendation. |
 | Watch time by weekday | Which days are associated with stronger watch time? | Compare the weekday bars; this is association, not proof of causation. |
 | High-performance rate by source | Which sources have more predicted high-performance videos? | The percentage is the share of filtered videos predicted as high performance. |
 | Duration versus watch time | Does video length relate to watch time? | Each point is a video; color identifies category and size represents impressions. |
@@ -18,17 +18,19 @@ The Power BI page `Complete Analysis Dashboard` is the main presentation page. I
 | Probability by traffic source | Where is model confidence higher? | Compare average predicted probability across sources. |
 | Probability distribution | How concentrated are predictions? | The bars show whether predictions are mostly low, medium, or high probability. |
 | Feature importance | Which input fields influence the Random Forest most? | Larger importance means greater model usage, not causal impact. |
+| Actual versus predicted high-performance comparison | Where does the model agree with or differ from the historical label? | Compare `High_Performance` with `Predicted_High_Performance`; the gap is model error, not business impact. |
 | Hashtag relevance by source | Which hashtag method returns more relevant suggestions? | Higher scores indicate stronger lexical relevance in this dataset. |
 | Hashtags per category | Which categories receive more suggestions? | Compare average recommendation counts by category. |
 
 ## Recommended presentation order
 
-1. Start with KPIs to establish scale.
-2. Compare categories and traffic sources.
-3. Explain timing and duration patterns.
+1. Start with executive KPIs to establish scale.
+2. Compare categories and traffic sources using watch time, CTR, and predicted-high rate.
+3. Explain timing and duration patterns with caveats about dataset coverage.
 4. Show the predicted-high rate and probability distribution.
-5. Explain feature importance and the leakage rule.
-6. Finish with hashtag relevance and the recommendation table.
+5. Compare actual versus predicted labels and show test metrics.
+6. Explain feature importance and the leakage rule.
+7. Finish with hashtag relevance and the recommendation table.
 
 ## Important interpretation rule
 

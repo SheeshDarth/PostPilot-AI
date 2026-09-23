@@ -60,7 +60,7 @@ This path exports `instagram_predictions.csv`, analysis tables, metrics, and fea
 
 ## Final project domain: YouTube
 
-The project name remains **PostPilot AI**, but the final domain can be YouTube video analytics. Run `src/youtube_postpilot.py` with `data/youtube_analytics/YouTube_Video.csv`. It exports `output/youtube_predictions.csv`, `output/youtube_model_metrics.csv`, and `output/youtube_feature_importance.csv`. See `report/YouTube_PostPilot_Report.md` for the YouTube report.
+The final domain is YouTube video analytics. Run `src/youtube_postpilot.py` with `data/youtube_analytics/YouTube_Video.csv`. It exports `output/youtube_predictions.csv`, `output/youtube_model_metrics.csv`, and `output/youtube_feature_importance.csv`. See `report/YouTube_PostPilot_Report.md` for the canonical project report.
 
 ## Local prediction dashboard
 

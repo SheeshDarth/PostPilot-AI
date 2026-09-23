@@ -31,24 +31,6 @@
             }
           ]
         },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "YouTube"
-                    }
-                  },
-                  "Property": "Total Videos"
-                }
-              },
-              "queryRef": "YouTube.Total Videos",
-              "nativeQueryRef": "Total Videos"
-            }
-          ]
-        },
         "Tooltips": {
           "projections": [
             {
@@ -64,6 +46,24 @@
               },
               "queryRef": "YouTube.Average Prediction Probability",
               "nativeQueryRef": "Average Prediction Probability"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "YouTube"
+                    }
+                  },
+                  "Property": "Total Videos"
+                }
+              },
+              "queryRef": "YouTube.Total Videos",
+              "nativeQueryRef": "Total Videos"
             }
           ]
         }
@@ -131,84 +131,6 @@
                   "expr": {
                     "Literal": {
                       "Value": "'#F4F7FB'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "categoryAxis": [
-        {
-          "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#A8B3C7'"
-                    }
-                  }
-                }
-              }
-            },
-            "titleColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F4F7FB'"
-                    }
-                  }
-                }
-              }
-            },
-            "gridlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#35506F'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#A8B3C7'"
-                    }
-                  }
-                }
-              }
-            },
-            "titleColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F4F7FB'"
-                    }
-                  }
-                }
-              }
-            },
-            "gridlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#35506F'"
                     }
                   }
                 }
